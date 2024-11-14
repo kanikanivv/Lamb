@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '商品一覧')
+
 @section('content')
 <div class="container page-parent product-list">
     <aside class="page-side">
@@ -32,14 +34,14 @@
     <main class="page-main">
         <div class="row card-list">
             <!-- card -->
-            @foreach ($books as $book)
+            @foreach ($items as $item)
             <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
                 <a href="">
                     <img src="images/noimg.png" alt="">
                 </a>
                 <div class="card-body"><a>
-                    <h5 class="card-title">{{ $book->book_name }}</h5>
-                    <p class="card-text">{{ $book->book_id }}</p>
+                    <h5 class="card-title">{{ $item->item_name }}</h5>
+                    <p class="card-text">{{ $item->item_id }}</p>
                 </a></div>
             </div>
             @endforeach
