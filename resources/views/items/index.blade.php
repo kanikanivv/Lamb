@@ -32,15 +32,17 @@
     <main class="page-main">
         <div class="row card-list">
             <!-- card -->
+            @foreach ($books as $book)
             <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
                 <a href="">
                     <img src="images/noimg.png" alt="">
                 </a>
                 <div class="card-body"><a>
-                    <h5 class="card-title">商品名が入ります</h5>
-                    <p class="card-text">商品説明や値段が入ります。商品説明や値段が入ります。</p>
+                    <h5 class="card-title">{{ $book->book_name }}</h5>
+                    <p class="card-text">{{ $book->book_id }}</p>
                 </a></div>
             </div>
+            @endforeach
             <!-- card end -->
         </div>
         <!-- navigation -->
