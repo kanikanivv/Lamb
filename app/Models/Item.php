@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Databese\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
@@ -21,27 +21,27 @@ class Item extends Model
     ];
 
     public function ItemImage() {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(ItemImage::class);
     }
     public function ItemSize() {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(ItemSize::class);
     }
     public function ItemGender() {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(ItemGender::class);
     }
     // public function Review() {
-    //     return $this->hasMany(Item::class);
+    //     return $this->hasMany(Review::class);
     // }
     public function Cart() {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Cart::class);
     }
     public function OrderDetail() {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(OrderDetail::class);
     }
     public function Categorie() {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Categorie::class);
     }
     // public function Like() {
-    //     return $this->hasMany(Item::class);
+    //     return $this->hasMany(Like::class);
     // }
 }

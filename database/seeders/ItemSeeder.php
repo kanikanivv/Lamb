@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory;
 use App\Models\Item;
 
-class ItemsTableSeeder extends Seeder
+class ItemSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -63,16 +63,19 @@ class ItemsTableSeeder extends Seeder
             '「スリットのデザインがセクシーでありながらも、上品な印象を与えてくれます。スカート自体のラインがきれいで、着るだけでスタイルが良く見えます。カジュアルにもドレッシーにも使えるので、幅広いシーンで活躍しています。',
             '「足元を華奢に見せてくれるシューズは、普段使いに最適です。柔らかく履き心地が良く、足が疲れにくいです。シンプルなデザインなので、どんなコーディネートにも合わせやすく、定番アイテムとして愛用しています。」'
         ];
+
+        //ダミーデータの生成
         for ($i = 0; $i < $NUM_FAKER; $i++) {
             Item::create([
-                // 'item_size_id' => ,
-                // 'item_gender_id' => $faker->numberBetween(1, 3),
+                'item_category_id' => $faker->numberBetween(1, 6),
+                'item_size_id' => $faker->numberBetween(1, 3),
+                'item_gender_id' => $faker->numberBetween(1, 3),
                 'item_name' => $itemTitle[mt_rand(0, array_key_last($itemTitle))],
-                'price' => $faker->numberBetween(10, 30) . '00',
+                'price' => $faker->numberBetween(1000, 3000),
                 'item_comment' =>$itemComment[mt_rand(0, array_key_last($itemComment))],
                 'item_count' => 20,
-                'created_at' => $faker->$faker->dateTime('now'),
-                'update_at' => $faker->$faker->dateTime('now'),
+                'created_at' => $faker->dateTime('now'),
+                'updated_at' => $faker->dateTime('now'),
             ]);
         }
     }

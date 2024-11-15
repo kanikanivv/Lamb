@@ -34,6 +34,7 @@
     <main class="page-main">
         <div class="row card-list">
             <!-- card -->
+            if ($)
             @foreach ($items as $item)
             <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
                 <a href="">
@@ -41,7 +42,7 @@
                 </a>
                 <div class="card-body"><a>
                     <h5 class="card-title">{{ $item->item_name }}</h5>
-                    <p class="card-text">{{ $item->item_id }}</p>
+                    <p class="card-text">{{ $item->item_comment }}</p>
                 </a></div>
             </div>
             @endforeach
