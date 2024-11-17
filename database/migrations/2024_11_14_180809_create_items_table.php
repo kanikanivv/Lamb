@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('item_gender_id');
             $table->string('item_name', 60);
             $table->integer('price');
-            $table->text('item_comment', 1000)->nullabel();
+            $table->text('item_comment', 1000)->nullable();
             $table->integer('item_count')->default(20);
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
@@ -26,7 +26,7 @@ return new class extends Migration
             //外部キー制約
             $table->foreign('item_category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('item_size_id')->references('id')->on('sizes')->onDelete('cascade');
-            $table->foreign('item_gender_id')->references('id')->on('sizes')->onDelete('cascade');
+            $table->foreign('item_gender_id')->references('id')->on('genders')->onDelete('cascade');
         });
     }
 

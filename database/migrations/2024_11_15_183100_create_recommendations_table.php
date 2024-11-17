@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('gender', function (Blueprint $table) {
+        Schema::create('recommendations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('gender_name', 60)->unique();
+            $table->unsignedBigInteger('order_id');
+            $table->integer('recommendations_count');
             $table->timestamp('created_at');
-            $table->timestamp('update_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+
+            //外部キー制約
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
+
     }
 
     /**
@@ -24,8 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('gender', function (Blueprint $table) {
-            Schema::dropIfExists('gender');
-        });
+        Schema::dropIfExists('recommendations');
     }
 };
