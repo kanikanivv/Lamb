@@ -396,17 +396,17 @@ h2 {
 .login .login-block-mb {
     margin-top: 10px;
 }
-.login .login-block form label {
+.login .login-block label {
   font-size: 1.4rem;
 }
-.login .login-block form input {
+.login .login-block input {
   width: 100%;
   height: 50px;
   padding-inline: 1.6rem;
   font-size: 1.6rem;
   color: #aaaaaa;
 }
-.login .login-block form .btn {
+.login .login-block .btn {
   width: 100%;
   height: 100%;
   border-radius: 4px;
@@ -422,10 +422,11 @@ h2 {
 .login .login-block form .login-btn:hover {
   opacity: 0.8;
 }
-.login .login-block form .registration-btn {
+.login .login-block .registration-btn {
+  max-width: 400px;
   background: #f8b500;
 }
-.login .login-block form .registration-btn:hover {
+.login .login-block .registration-btn:hover {
   opacity: 0.8;
 }
 
