@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory;
 use App\Models\Item;
 
-class ItemSeeder extends Seeder
+class ItemsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -64,18 +64,23 @@ class ItemSeeder extends Seeder
             '「足元を華奢に見せてくれるシューズは、普段使いに最適です。柔らかく履き心地が良く、足が疲れにくいです。シンプルなデザインなので、どんなコーディネートにも合わせやすく、定番アイテムとして愛用しています。」'
         ];
 
+        // 外部キー
+        $categoryIds = DB::table('item_categories')->pick('id')->toArray();
+        $sizeIds     = DB::table('item_sizes')->pick('id')->toArray();
+        $genderIds   = DB::table('item_genders')->pick('id')->toArray();
+
         //ダミーデータの生成
         for ($i = 0; $i < $NUM_FAKER; $i++) {
             Item::create([
-                'item_category_id' => $faker->numberBetween(1, 6),
-                'item_size_id' => $faker->numberBetween(1, 3),
-                'item_gender_id' => $faker->numberBetween(1, 3),
-                'item_name' => $itemTitle[mt_rand(0, array_key_last($itemTitle))],
-                'price' => $faker->numberBetween(1000, 3000),
-                'item_comment' =>$itemComment[mt_rand(0, array_key_last($itemComment))],
-                'item_count' => 20,
-                'created_at' => $faker->dateTime('now'),
-                'updated_at' => $faker->dateTime('now'),
+                'item_category_id' => $faker->randomElement($categoryIds),
+                'item_size_id'     => $faker->randomElement($sizeIds),
+                'item_gender_id'   => $faker->randomElement($genderIds),
+                'item_name'        => $itemTitle[mt_rand(0, array_key_last($itemTitle))],
+                'price'            => $faker->numberBetween(1000, 3000),
+                'item_comment'     => $itemComment[mt_rand(0, array_key_last($itemComment))],
+                'item_count'       => 20,
+                'created_at'       => $faker->dateTime('now'),
+                'updated_at'       => $faker->dateTime('now'),
             ]);
         }
     }

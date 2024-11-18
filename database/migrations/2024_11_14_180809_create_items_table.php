@@ -24,9 +24,9 @@ return new class extends Migration
             $table->timestamp('updated_at');
 
             //外部キー制約
-            $table->foreign('item_category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('item_size_id')->references('id')->on('sizes')->onDelete('cascade');
-            $table->foreign('item_gender_id')->references('id')->on('genders')->onDelete('cascade');
+            $table->foreign('item_category_id')->references('id')->on('item_categories')->onDelete('cascade');
+            $table->foreign('item_size_id')->references('id')->on('item_sizes')->onDelete('cascade');
+            $table->foreign('item_gender_id')->references('id')->on('item_genders')->onDelete('cascade');
         });
     }
 

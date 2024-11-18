@@ -29,6 +29,9 @@ class Item extends Model
     public function ItemGender() {
         return $this->hasMany(ItemGender::class);
     }
+    public function ItemCategory() {
+        return $this->hasMany(ItemCategory::class);
+    }
     // public function Review() {
     //     return $this->hasMany(Review::class);
     // }
@@ -37,9 +40,6 @@ class Item extends Model
     }
     public function OrderDetail() {
         return $this->hasMany(OrderDetail::class);
-    }
-    public function Categorie() {
-        return $this->hasMany(Categorie::class);
     }
     // public function Like() {
     //     return $this->hasMany(Like::class);
