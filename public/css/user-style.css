@@ -701,5 +701,17 @@ h2 {
     text-decoration: none;
 }
 
+/*-------------------------
+    追加
+-------------------------*/
+.nav-logout {
+    margin-top: 5px;
+    font-size: 15px;
+}
+.nav-logout a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
 
 /*# sourceMappingURL=style.css.map */
