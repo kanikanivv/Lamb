@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -87,4 +88,43 @@ class RegisterController extends Controller
             'age'       => $data['age']
         ]);
     }
-}
+
+/**
+     * 新規登録フォーム
+     *
+     * @return void
+     */
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+    /**
+     * 新規登録機能
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function register(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'name' => 'required|string|max:60',
+        ]);
+
+        $User = User::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'name' => $request->name,
+        ]);
+
+    }
+
+
+
+
+
+
+// }
+ }

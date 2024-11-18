@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container page-parent">
         <div class="membership">
             <main class="page-main" style="margin-bottom:4rem;">
@@ -22,7 +23,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="exampleInputPassword">{{ __('パスワード') }}</label>
                             <input id="exampleInputPassword" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password"
@@ -32,7 +33,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label for="formGroupExampleInput">{{ __('氏名') }}</label>
@@ -58,7 +59,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="formGroupExampleInput">{{ __('電話番号') }}</label>
                             <input id="formGroupExampleInput" type="text"
                                 class="form-control @error('tel') is-invalid @enderror" name="tel"
@@ -68,7 +69,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label for="formGroupExampleInput">{{ __('住所') }}</label>
@@ -89,7 +90,7 @@
                                     20
                                 </option>
                                 @for ($i = 21; $i < 100; $i++)
-                                <option value="">
+                                <option value="21">
                                     {{ $i }}
                                 </option>
                                 @endfor
