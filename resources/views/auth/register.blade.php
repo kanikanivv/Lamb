@@ -23,7 +23,7 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="exampleInputPassword">{{ __('パスワード') }}</label>
                             <input id="exampleInputPassword" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password"
@@ -33,7 +33,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         <div class="form-group">
                             <label for="formGroupExampleInput">{{ __('氏名') }}</label>
@@ -51,7 +51,7 @@
                             <label for="formGroupExampleInput">{{ __('ユーザ名') }}</label>
                             <input id="formGroupExampleInput" type="text"
                                 class="form-control @error('user_name') is-invalid @enderror" name="user_name"
-                                placeholder="ユーザ名を入力してください" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
+                                placeholder="ユーザ名を入力してください" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus value="{{old('user_name')}}">
                             @error('user_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -59,23 +59,23 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="formGroupExampleInput">{{ __('電話番号') }}</label>
                             <input id="formGroupExampleInput" type="text"
                                 class="form-control @error('tel') is-invalid @enderror" name="tel"
-                                placeholder="電話番号を入力してください" required autocomplete="tel" autofocus>
+                                placeholder="電話番号を入力してください" required autocomplete="tel" autofocus value="{{old('tel')}}">
                             @error('tel')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         <div class="form-group">
                             <label for="formGroupExampleInput">{{ __('住所') }}</label>
                             <input id="formGroupExampleInput" type="text"
                                 class="form-control @error('address') is-invalid @enderror" name="address"
-                                placeholder="住所を入力してください" required autocomplete="address" autofocus>
+                                placeholder="住所を入力してください" required autocomplete="address" autofocus value="{{old('address')}}">
                             @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -85,7 +85,7 @@
 
                         <div class="form-group select">
                             <label for="exampleFormControlSelect1">年齢</label>
-                            <select name="age" class="form-control" id="exampleFormControlSelect1">
+                            <select name="age" class="form-control" id="exampleFormControlSelect1" value={{old('age')}}>
                                 <option value="20" selected>
                                     20
                                 </option>
