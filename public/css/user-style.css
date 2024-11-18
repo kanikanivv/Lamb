@@ -36,6 +36,7 @@ a:hover {
   width: 100%;
   background: #fff;
   z-index: 999;
+  top: 0;
 }
 
 header .logo {
@@ -392,6 +393,9 @@ h2 {
   max-width: 400px;
   margin-inline: auto;
 }
+.login .login-block-mb {
+    margin-top: 10px;
+}
 .login .login-block form label {
   font-size: 1.4rem;
 }
@@ -655,8 +659,9 @@ h2 {
 .membership .alert-primary {
   text-align: center;
   margin-top: 50px;
-  background: #fff;
+  background: #f8fafc;
   border-color: #fff;
+  font-size: 15px;
 }
 .membership .members-btn {
   display: flex;
@@ -674,7 +679,26 @@ h2 {
   background: #dfac20;
   border-color: #dfac20;
 }
+.membership label {
+    display: inline-block;
+    font-size: 15px;
+}
 .membership .members-btn .btn-primary:active {
   background: #a48937;
   border-color: #a48937;
-}/*# sourceMappingURL=style.css.map */
+}
+/*-------------------------
+    追加
+-------------------------*/
+.nav-logout {
+    margin-top: 5px;
+    font-size: 15px;
+}
+.nav-logout a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/*# sourceMappingURL=style.css.map */
