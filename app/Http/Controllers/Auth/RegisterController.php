@@ -61,7 +61,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'email'     => ['required', 'string', 'email', 'max:250', 'unique:users'],
-            'password'  => ['required', 'string', 'min:8', 'confirmed'],
+            'password'  => ['required', 'string', 'min:8'],
             'name'      => ['required', 'string', 'max:60'],
             'user_name' => ['required', 'string', 'max:60'],
             'tel'       => ['required', 'string', 'regex:/^(070|080|090)\d{8}$/'],
@@ -98,33 +98,4 @@ class RegisterController extends Controller
     {
         return view('auth.register');
     }
-
-    /**
-     * 新規登録機能
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function register(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'name' => 'required|string|max:60',
-        ]);
-
-        $User = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'name' => $request->name,
-        ]);
-
-    }
-
-
-
-
-
-
-// }
  }

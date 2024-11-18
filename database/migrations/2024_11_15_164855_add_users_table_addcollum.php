@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id')->change();
             $table->string('email', 250)->change();
             //$table->timestamp('email_verified_at')->nullable()->change();
-            $table->string('password', 20)->change();
+            $table->string('password', 70)->change();
             $table->string('name', 60)->change();
             //$table->string('user_name', 60)->nullable();
             //$table->string('tel', 13);

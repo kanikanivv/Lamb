@@ -10,9 +10,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//ログイン画面から新規登録に遷移
-Route::post('/register', [App\Http\Controllers\auth\RegisterController::class, 'index']);
 //新規登録画面から新規登録処理
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('register', [RegisterController::class, 'register']);
-
+Route::middleware('guest')->group(function () {
+    Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('register', [RegisterController::class, 'register'])
+        ->name('register');
+});
