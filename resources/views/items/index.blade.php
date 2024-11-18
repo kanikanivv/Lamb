@@ -48,7 +48,21 @@
                         </div>
                     @endforeach
 
-                    @if ($item->gender_name == 'レディース')
+                @elseif ($item->gender_name == 'レディース')
+
+                    @foreach ($items as $item)
+                        <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
+                            <a href="">
+                                <img src="images/noimg.png" alt="">
+                            </a>
+                            <div class="card-body"><a>
+                                    <h5 class="card-title">{{ $item->item_name }}</h5>
+                                    <p class="card-text">{{ $item->item_comment }}</p>
+                                </a></div>
+                        </div>
+                    @endforeach
+
+                    @if ($item->gender_name == 'キッズ')
 
                         @foreach ($items as $item)
                             <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
@@ -62,22 +76,10 @@
                             </div>
                         @endforeach
 
-                        @if ($item->gender_name == 'キッズ')
+                    @endif
+                    <!-- card end -->
 
-                            @foreach ($items as $item)
-                                <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
-                                    <a href="">
-                                        <img src="images/noimg.png" alt="">
-                                    </a>
-                                    <div class="card-body"><a>
-                                            <h5 class="card-title">{{ $item->item_name }}</h5>
-                                            <p class="card-text">{{ $item->item_comment }}</p>
-                                        </a></div>
-                                </div>
-                            @endforeach
-
-                        @endif
-                        <!-- card end -->
+                @endif
             </div>
             <!-- navigation -->
             <nav aria-label="Page navigation example lamb-pagenatioin">
