@@ -9,8 +9,8 @@ class ItemsController extends Controller
 {
     public function index()
     {
-        // $items = Item::all();
-        // return view('items.index', compact('items')); //変数$itemsをviewに渡す
+        $items = Item::all();
+        return view('items.index', compact('items')); //変数$itemsをviewに渡す
     }
 
     public function show($id)
