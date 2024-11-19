@@ -7,3 +7,4 @@ use App\Http\Controllers\ItemsController;
 Route::get('/items', [ItemsController::class, 'index'])->name('items.index');
 Route::get('/items/{id}', [ItemsController::class, 'show'])->name('items.show');
 
+Route::get('/thanks', [ItemsController::class, 'thanks'])->name('items.thanks');
