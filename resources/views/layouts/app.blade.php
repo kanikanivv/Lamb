@@ -69,7 +69,7 @@
 
                                         @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}"><img
+                                    <a class="nav-link" href="{{ route('carts.index') }}"><img
                                         src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
