@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $table = 'catecogories';
+    protected $table = 'categories';
     protected $fillabe = [
         'category_name',
         'created_at',
         'update_at'
     ];
 
-    public function ItemGCategory() {
-        return $this->hasMany(ItemGCategory::class);
+    public function Item() {
+        return $this->hasMany(Item::class, 'item_category_id');
     }
 }

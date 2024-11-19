@@ -40,6 +40,7 @@ class ItemsSeeder extends Seeder
             'スリットスカート',
             'バレエフラット'
         ];
+
         $itemComment = [
             '「寒い季節には欠かせないアイテムです。柔らかくて温かい素材がとても心地よく、寒さ対策にはぴったりです。丈感も丁度良く、重ね着しても動きやすいのが嬉しいポイント。カジュアルに着こなせるので、デイリー使いにも最適ですが、毛が抜けやすい点が少し気になります。',
             '「フラワープリントとフリルデザインが可愛らしく、着るだけで気分が上がります。軽やかな素材感が春や秋にぴったりで、デニムやスカートにも合わせやすいです。特別な日だけでなく、普段使いにも使える万能アイテムです。とてもお気に入り！',
@@ -64,17 +65,12 @@ class ItemsSeeder extends Seeder
             '「足元を華奢に見せてくれるシューズは、普段使いに最適です。柔らかく履き心地が良く、足が疲れにくいです。シンプルなデザインなので、どんなコーディネートにも合わせやすく、定番アイテムとして愛用しています。」'
         ];
 
-        // 外部キー
-        $categoryIds = DB::table('item_categories')->pick('id')->toArray();
-        $sizeIds     = DB::table('item_sizes')->pick('id')->toArray();
-        $genderIds   = DB::table('item_genders')->pick('id')->toArray();
-
         //ダミーデータの生成
         for ($i = 0; $i < $NUM_FAKER; $i++) {
             Item::create([
-                'item_category_id' => $faker->randomElement($categoryIds),
-                'item_size_id'     => $faker->randomElement($sizeIds),
-                'item_gender_id'   => $faker->randomElement($genderIds),
+                'item_category_id' => $faker->numberBetween(1, 6),
+                'item_size_id'     => $faker->numberBetween(1, 3),
+                'item_gender_id'   => $faker->numberBetween(1, 3),
                 'item_name'        => $itemTitle[mt_rand(0, array_key_last($itemTitle))],
                 'price'            => $faker->numberBetween(1000, 3000),
                 'item_comment'     => $itemComment[mt_rand(0, array_key_last($itemComment))],

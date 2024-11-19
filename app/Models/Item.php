@@ -20,28 +20,13 @@ class Item extends Model
         'update_at'
     ];
 
-    public function ItemImage() {
-        return $this->hasMany(ItemImage::class);
+    // 性別
+    public function Gender() {
+        return $this->belongsTo(Gender::class, 'item_gender_id');
     }
-    public function ItemSize() {
-        return $this->hasMany(ItemSize::class);
+
+    // カテゴリー
+    public function Category() {
+        return $this->belongsTo(Category::class, 'item_category_id');
     }
-    public function ItemGender() {
-        return $this->hasMany(ItemGender::class);
-    }
-    public function ItemCategory() {
-        return $this->hasMany(ItemCategory::class);
-    }
-    // public function Review() {
-    //     return $this->hasMany(Review::class);
-    // }
-    public function Cart() {
-        return $this->hasMany(Cart::class);
-    }
-    public function OrderDetail() {
-        return $this->hasMany(OrderDetail::class);
-    }
-    // public function Like() {
-    //     return $this->hasMany(Like::class);
-    // }
 }

@@ -13,7 +13,7 @@ class Gender extends Model
         'update_at'
     ];
 
-    public function ItemGender() {
-        return $this->hasMany(ItemGender::class);
+    public function Items() {
+        return $this->hasMany(Item::class, 'item_gender_id');
     }
 }
