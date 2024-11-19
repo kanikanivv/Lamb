@@ -65,4 +65,9 @@ class ItemsController extends Controller
         $category_name = Category::where('category_name', $id);
         return view('items.show', compact('item'));
     }
+
+    public function thanks()
+    {
+        return view('items.thanks');
+    }
 }

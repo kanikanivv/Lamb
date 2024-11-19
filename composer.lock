@@ -4,7 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "content-hash": "68650fc350399ecc50155bd2f71cdb76",
+=======
+    "content-hash": "142cd3da0c89a570b72370eb120404ab",
+>>>>>>> 165e20e (update:app.blade.php)
+=======
     "content-hash": "0e5e4bf9102aa6fd199b4c0836e24820",
+>>>>>>> feature/202411/sekiya
     "packages": [
         {
             "name": "brick/math",
@@ -5828,6 +5836,10 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feature/202411/sekiya
             "version": "v3.14.7",
             "source": {
                 "type": "git",
@@ -5838,6 +5850,21 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/f484b8c9124de0b163da39958331098ffcd4a65e",
                 "reference": "f484b8c9124de0b163da39958331098ffcd4a65e",
+<<<<<<< HEAD
+=======
+            "version": "v3.14.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "14e4517bd49130d6119228107eb21ae47ae120ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/14e4517bd49130d6119228107eb21ae47ae120ab",
+                "reference": "14e4517bd49130d6119228107eb21ae47ae120ab",
+>>>>>>> 165e20e (update:app.blade.php)
+=======
+>>>>>>> feature/202411/sekiya
                 "shasum": ""
             },
             "require": {
@@ -5896,7 +5923,15 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
+<<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.14.7"
+=======
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.14.6"
+>>>>>>> 165e20e (update:app.blade.php)
+=======
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.14.7"
+>>>>>>> feature/202411/sekiya
             },
             "funding": [
                 {
@@ -5908,6 +5943,13 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+            "time": "2024-11-14T09:12:35+00:00"
+=======
+            "time": "2024-10-18T13:15:12+00:00"
+>>>>>>> 165e20e (update:app.blade.php)
+=======
             "time": "2024-11-14T09:12:35+00:00"
         },
         {
@@ -6049,6 +6091,7 @@
                 "source": "https://github.com/doctrine/deprecations/tree/1.1.3"
             },
             "time": "2024-01-30T19:34:25+00:00"
+>>>>>>> feature/202411/sekiya
         },
         {
             "name": "fakerphp/faker",
