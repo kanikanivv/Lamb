@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('item_size_id');
             $table->unsignedBigInteger('item_gender_id');
             $table->string('item_name', 60);
-            $table->integer('price');
+            $table->integer('item_price');
             $table->text('item_comment', 1000)->nullable();
             $table->integer('item_count')->default(20);
             $table->timestamp('created_at');
