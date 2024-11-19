@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('sizes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('size_name', 60)->unique();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

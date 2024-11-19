@@ -194,7 +194,7 @@ h2 {
   justify-content: center;
   color: #000;
 }
-.pagination .page-item .page-link.active {
+.pagination .page-item.active .page-link {
   background: #f8b500;
   color: #fff;
   border-radius: 4px;
