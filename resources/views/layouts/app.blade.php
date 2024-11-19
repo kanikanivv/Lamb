@@ -8,6 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<<<<<<< HEAD
+=======
+    <meta name="description" content="Lamb">
+>>>>>>> feature/202411/sekiya
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
