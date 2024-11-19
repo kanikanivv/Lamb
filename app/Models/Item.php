@@ -29,4 +29,10 @@ class Item extends Model
     public function Category() {
         return $this->belongsTo(Category::class, 'item_category_id');
     }
+
+    // 画像
+    public function Image() {
+        return $this->belongsTo(Image::class, 'item_image_id');
+    }
+
 }
