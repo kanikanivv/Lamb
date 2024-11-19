@@ -195,7 +195,7 @@ h2 {
   justify-content: center;
   color: #000;
 }
-.pagination .page-item .page-link.active {
+.pagination .page-item.active .page-link {
   background: #f8b500;
   color: #fff;
   border-radius: 4px;
@@ -687,6 +687,7 @@ h2 {
 .membership .members-btn .btn-primary:active {
   background: #a48937;
   border-color: #a48937;
+
 }
 /*-------------------------
     追加
@@ -713,5 +714,7 @@ h2 {
     font-weight: bold;
     text-decoration: none;
 }
+
+/*# sourceMappingURL=style.css.map */
 
 /*# sourceMappingURL=style.css.map */
