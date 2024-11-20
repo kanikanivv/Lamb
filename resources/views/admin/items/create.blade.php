@@ -43,8 +43,7 @@
                 <tr>
                     <th>アイテム</th>
                     <td>
-                        <select name="item-categories" id="" class="form-select form-select-lg"
-                            aria-label=".form-select-lg">
+                        <select name="item-categories_id" id="" class="form-select form-select-lg" aria-label=".form-select-lg">
                             <option selected>選択されていません</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -55,7 +54,7 @@
                 <tr>
                     <th>サイズ</th>
                     <td>
-                        <select name="item-size" id="" class="form-select form-select-lg"
+                        <select name="item-size_id" id="" class="form-select form-select-lg"
                             aria-label=".form-select-lg">
                             <option selected>選択されていません</option>
                             @foreach ($sizes as $size)
@@ -67,7 +66,7 @@
                 <tr>
                     <th>性別</th>
                     <td>
-                        <select name="gender" id="" class="form-select form-select-lg"
+                        <select name="item_gender_id" id="" class="form-select form-select-lg"
                             aria-label=".form-select-lg">
                             <option selected>選択されていません</option>
                             @foreach ($genders as $gender)
@@ -78,7 +77,7 @@
                 </tr>
             </table>
             <div><button type="submit" class="btn update-btn">更新する</button></div>
-            <p class="text-center mt-4"><a href="{{ route(admin.items.index) }}" class="text-decoration-none">キャンセル</a></p>
+            <p class="text-center mt-4"><a href="" class="text-decoration-none">キャンセル</a></p>
         </form>
     </main>
     <!-- main end -->

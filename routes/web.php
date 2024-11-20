@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\Admin\ItemsController as AdminItemsController;
 use App\Http\Controllers\auth\RegisterController;
 
 //新規登録画面から新規登録処理
@@ -26,6 +27,6 @@ Route::prefix('admin')->name('admin')->group(function() {
 
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
-        Route::get('create', [ItemsController::class, 'create'])->name('create');
+        Route::get('create', [AdminItemsController::class, 'create'])->name('create');
     });
 });
