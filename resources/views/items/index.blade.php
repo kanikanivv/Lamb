@@ -47,8 +47,5 @@
             {{ $items->links() }}
         </main>
     </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> 68be6f3cdb5f38f7008c444bba06140637c839d7
 @endsection

@@ -31,7 +31,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light">
             <div class="container-wrpper border-bottom">
@@ -59,35 +59,35 @@
                                 <!-- Authentication Links -->
                                 @guest
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}"><img
-                                        src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}"><img
+                                                src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                        src="{{ 'images/FavoriteBorder.svg' }}" alt="お気に入り"></a>
+                                                src="{{ 'images/FavoriteBorder.svg' }}" alt="お気に入り"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                        src="{{ 'images/PersonOutline.svg' }}" alt="プロフィール"></a>
+                                                src="{{ 'images/PersonOutline.svg' }}" alt="プロフィール"></a>
                                     </li>
-
-                                        @else
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('carts.index') }}"><img
-                                        src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                        src="{{ 'images/FavoriteBorder.svg' }}" alt="お気に入り"></a>
+                                @else
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('carts.index') }}"><img
+                                                src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                        src="{{ 'images/PersonOutline.svg' }}" alt="プロフィール"></a>
+                                                src="{{ 'images/FavoriteBorder.svg' }}" alt="お気に入り"></a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
+                                                src="{{ 'images/PersonOutline.svg' }}" alt="プロフィール"></a>
                                     </li>
                                     <li class="nav-logout">
                                         <a class="nav-link" href="{{ route('logout') }}"
-                                              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                             {{ __('ログアウト') }}
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('ログアウト') }}
                                         </a>
                                     </li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf</form>
                                 @endguest
                             </ul>
                         </div>
@@ -100,27 +100,6 @@
             @yield('content')
         </main>
     </div>
-=======
-    <div class="container-wrpper border-bottom">
-        <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-4">
-                <div class="col-md-3 mb-2 mb-md-0">
-                    <a href="{{ route('items.index') }}" class="logo d-inline-flex link-body-emphasis text-decoration-none">
-                        Lamb
-                    </a>
-                </div>
-                <ul class="tools nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href=""><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a></li>
-                    <li><a><img src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a></li>
-                    <li><a><img src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a></li>
-                </ul>
-            </header>
-        </div>
-    </div>
-
-        @yield('content')
-
->>>>>>> 68be6f3cdb5f38f7008c444bba06140637c839d7
     <footer class="gl-footer">
         <div class="container-wrap">
             <div class="container">
