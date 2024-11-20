@@ -8,10 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<<<<<<< HEAD
-=======
     <meta name="description" content="Lamb">
->>>>>>> feature/202411/sekiya
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -38,14 +36,14 @@
         <div class="container">
             <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-4">
                 <div class="col-md-3 mb-2 mb-md-0">
-                    <a href="/" class="logo d-inline-flex link-body-emphasis text-decoration-none">
+                    <a href="{{ route('items.index') }}" class="logo d-inline-flex link-body-emphasis text-decoration-none">
                         Lamb
                     </a>
                 </div>
                 <ul class="tools nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href=""><img src="images/AddShoppingCart.svg" alt="カート"></a></li>
-                    <li><a><img src="images/FavoriteBorder.svg" alt="お気に入り"></a></li>
-                    <li><a><img src="images/PersonOutline.svg" alt="プロフィール"></a></li>
+                    <li><a href=""><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a></li>
+                    <li><a><img src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a></li>
+                    <li><a><img src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a></li>
                 </ul>
             </header>
         </div>

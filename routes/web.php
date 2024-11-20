@@ -8,11 +8,15 @@ use App\Http\Controllers\auth\RegisterController;
 Auth::routes();
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
-Route::get('/items', [ItemsController::class, 'index']);
 
 // 商品一覧
-Route::get('/items', [ItemsController::class, 'index'])->name('items.index');
-Route::get('/items/{id}', [ItemsController::class, 'show'])->name('items.show');
+Route::group(['prefix' => 'items', 'as' => 'items.'], function() {
+    Route::get('/', [ItemsController::class, 'index'])->name('index');
+    Route::get('/{id}', [ItemsController::class, 'show'])->name('show');
+});
+
+// お届け先確認画面
+Route::get('/address', [OrderController::class, 'index'])->name('order.index');
 
 // 購入完了
 Route::get('/thanks', [ItemsController::class, 'thanks'])->name('items.thanks');
