@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Gender;
-use App\Models\Image;
 use App\Models\Category;
+use App\Models\Size;
+use App\Models\Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,7 +15,7 @@ use Illuminate\View\View;
 class ItemsController extends Controller
 {
     /**
-     * 商品一覧を表示
+     * カテゴリー別商品一覧を表示
      *
      * @param Request $request
      * @param [type] $gender_name
@@ -24,7 +25,7 @@ class ItemsController extends Controller
     {
 
         // 性別パラメータを取得
-        $gender_name = $gender_name ?? $request->get('gender_name', 'すべて');
+        $gender_name   = $gender_name ?? $request->get('gender_name', 'すべて');
 
         // カテゴリーパラメータを取得
         $category_name = $category_name ?? $request->get('category_name', 'すべて');
@@ -62,12 +63,43 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        $item = Item::find($id);
+        $item          = Item::find($id);
         $category_name = Category::where('category_name', $id);
+
         return view('items.show', compact('item'));
     }
 
-    public function thanks()
+    /**
+     * 商品の追加
+     *
+     * @return void
+     */
+    public function create(Request $request): object
+    {
+        $categories = Category::all();
+        $sizes      = Size::all();
+        $genders    = Gender::all();
+
+        // POST送信したデータを取得して、itemテーブルに追加
+        DB::table('items')->insert([
+            'id'                => $request->input('id'),
+            'item_category_id'  => $request->input('item_category_id'),
+            'item_size_id'      => $request->input('item_size_id'),
+            'item_gender_id'    => $request->input('item_gender_id'),
+            'item_name'         => $request->input('item_name'),
+            'item_price'        => $request->input('item_price'),
+            'item_comment'      => $request->input('item_comment'),
+        ]);
+
+        return view('admin.items.create', compact('input', 'categories', 'sizes', 'genders'));
+    }
+
+    /**
+     * 購入完了画面を表示
+     *
+     * @return void
+     */
+    public function done()
     {
         return view('items.thanks');
     }

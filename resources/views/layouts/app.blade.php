@@ -48,7 +48,9 @@
             </header>
         </div>
     </div>
+
         @yield('content')
+
     <footer class="gl-footer">
         <div class="container-wrap">
             <div class="container">

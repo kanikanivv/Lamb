@@ -13,7 +13,7 @@ class Size extends Model
         'update_at'
     ];
 
-    public function ItemSize() {
-        return $this->hasMany(ItemSize::class);
+    public function Item() {
+        return $this->hasMany(Item::class);
     }
 }
