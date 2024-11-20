@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-
 class ItemsController extends Controller
 {
     /**
@@ -67,31 +66,6 @@ class ItemsController extends Controller
         $category_name = Category::where('category_name', $id);
 
         return view('items.show', compact('item'));
-    }
-
-    /**
-     * 商品の追加
-     *
-     * @return void
-     */
-    public function create(Request $request): object
-    {
-        $categories = Category::all();
-        $sizes      = Size::all();
-        $genders    = Gender::all();
-
-        // POST送信したデータを取得して、itemテーブルに追加
-        DB::table('items')->insert([
-            'id'                => $request->input('id'),
-            'item_category_id'  => $request->input('item_category_id'),
-            'item_size_id'      => $request->input('item_size_id'),
-            'item_gender_id'    => $request->input('item_gender_id'),
-            'item_name'         => $request->input('item_name'),
-            'item_price'        => $request->input('item_price'),
-            'item_comment'      => $request->input('item_comment'),
-        ]);
-
-        return view('admin.items.create', compact('input', 'categories', 'sizes', 'genders'));
     }
 
     /**
