@@ -9,6 +9,7 @@ use App\Models\Size;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class ItemsController extends Controller
 {
@@ -19,10 +20,14 @@ class ItemsController extends Controller
      */
     public function create(): View
     {
-        $categories = Category::all();
-        $sizes      = Size::all();
-        $genders    = Gender::all();
+        $categories = Category::orderBy('id')->get();
+        $sizes      = Size::orderBy('id')->get();
+        $genders    = Gender::orderBy('id')->get();
 
+        // エラーハンドリング
+        if ($categories->isEmpty() || $sizes->isEmpty() || $genders->isEmpty()) {
+            return direct()->route('admin.items.index')->with('erroe', '必要なデータが見つかりませんでした');
+        }
         return view('admin.items.create', compact('categories', 'sizes', 'genders'));
     }
 
@@ -44,8 +49,6 @@ class ItemsController extends Controller
             'item_count'        => 'nullable|numeric|min:0',
         ]);
 
-        $createdAt = Item::all('created_at')->orderBy('')
-
         // バリデーションが成功した場合、データベースに保存
         DB::table('items')->insert([
             'id'                => $validated['id'],
@@ -55,11 +58,11 @@ class ItemsController extends Controller
             'item_name'         => $validated['item_name'],
             'item_price'        => $validated['item_price'],
             'item_comment'      => $validated['item_comment'] ?? null,
-            'item_count'        => 20,  // 値20
+            'item_count'        => 20,  // 固定値20
             'created_at'        => now(),
             'updated_at'        => now(),
         ]);
 
-        return to_route('admin.items.index', ['post' => $post->id]);
+        return to_route('admin.items.index');
     }
 }

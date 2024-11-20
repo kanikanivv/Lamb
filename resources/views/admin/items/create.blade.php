@@ -8,29 +8,28 @@
         <!-- breadcrumb -->
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="product.html" class="text-dark">管理一覧</a></li>
-                <li class="breadcrumb-item"><a href=".html" class="text-dark">商品一覧</a></li>
-                <li class="breadcrumb-item active" aria-current="page">商品詳細</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.items.index') }}" class="text-dark">商品一覧</a></li>
+                <li class="breadcrumb-item active" aria-current="page">商品新規作成</li>
             </ol>
         </nav>
         <!-- breadcrumb end -->
-        <h1>商品詳細</h1>
+        <h1>商品新規作成</h1>
         <p class="mb-3">2024/10/10</p>
-        <form action="" method="post" class="form-product-detail">
-            <!-- ディレクティブでCSRFを指定 -->
+        <form action="{{ route('admin.items.store') }}" method="post" class="form-product-detail">
+            <!-- CSRF攻撃対策 -->
             @csrf
 
             <table class="table-product-detail">
                 <tr>
                     <th>商品名</th>
                     <td>
-                        <input type="text" value="item_name" class="form-control form-control-lg">
+                        <input type="text" value="old(item_name)" class="form-control form-control-lg">
                     </td>
                 </tr>
                 <tr>
                     <th>単価</th>
                     <td>
-                        <input type="text" value="item_price" class="form-control form-control-lg">
+                        <input type="text" value="old(item_price)" class="form-control form-control-lg">
                     </td>
                 </tr>
                 <tr>
@@ -44,9 +43,11 @@
                     <th>アイテム</th>
                     <td>
                         <select name="item-categories_id" id="" class="form-select form-select-lg" aria-label=".form-select-lg">
-                            <option selected>選択されていません</option>
+                            <option value="" disable {{ old('item_categories_id') ? '' : 'selected' }}>選択されていません</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                <option value="{{ $category->id }}" {{ old('item_categories_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->category_name }}
+                                </option>
                             @endforeach
                         </select>
                     </td>
