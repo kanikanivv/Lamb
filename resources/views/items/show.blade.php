@@ -38,7 +38,8 @@
                             </select>
                         </div>
                     </div>
-                    <input class="btn btn-primary submit" type="button" value="カートに入れる">
+
+                    <input class="btn btn-primary submit" type="button" value="カートに入れる" name="action">
                 </div>
             </div>
 

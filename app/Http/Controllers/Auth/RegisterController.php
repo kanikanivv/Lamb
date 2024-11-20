@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/items';
 
     /**
      * Show the application dashboard.
@@ -87,6 +87,8 @@ class RegisterController extends Controller
             'address'   => $data['address'],
             'age'       => $data['age']
         ]);
+
+        return view('items.index');
     }
 
 /**

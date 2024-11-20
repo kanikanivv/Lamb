@@ -21,12 +21,12 @@ return new class extends Migration
             $table->text('item_comment', 1000)->nullable();
             $table->integer('item_count')->default(20);
             $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamp('updated_at')->nullable();
 
             //外部キー制約
-            $table->foreign('item_category_id')->references('id')->on('item_categories')->onDelete('cascade');
-            $table->foreign('item_size_id')->references('id')->on('item_sizes')->onDelete('cascade');
-            $table->foreign('item_gender_id')->references('id')->on('item_genders')->onDelete('cascade');
+            $table->foreign('item_category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('item_size_id')->references('id')->on('sizes')->onDelete('cascade');
+            $table->foreign('item_gender_id')->references('id')->on('genders')->onDelete('cascade');
         });
     }
 

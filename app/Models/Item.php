@@ -13,7 +13,7 @@ class Item extends Model
         'item_size_id',
         'item_gender_id',
         'item_name',
-        'price',
+        'item_price',
         'item_comment',
         'item_count',
         'created_at',
