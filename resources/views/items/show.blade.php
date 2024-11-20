@@ -8,10 +8,10 @@
             <div class="product-detail-top row">
                 <div class="col">
                     <div class="product-images">
-                        <img src="images/test.png" alt="">
-                        <img src="images/test.png" alt="">
-                        <img src="images/test.png" alt="">
-                        <img src="images/test.png" alt="">
+                        <img src="{{ asset('images/test.png') }}" alt="">
+                        <img src="{{ asset('images/test.png') }}" alt="">
+                        <img src="{{ asset('images/test.png') }}" alt="">
+                        <img src="{{ asset('images/test.png') }}" alt="">
                     </div>
                 </div>
                 <div class="col">
@@ -19,7 +19,7 @@
                     <div class="product-name">{{$item->item_name}}</div>
                     <p class="product-price">{{ number_format($item->item_price) }}<span>円（税込）</span></p>
                     <div class="row">
-                        <div class="col-md-4">数量</div>
+                        <div class="col-md-4 mb-3">数量</div>
                         <div class="col-md-8">
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>選択してください</option>

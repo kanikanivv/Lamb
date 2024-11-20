@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container page-parent product-list">
-        <aside class="page-side">
+        <asid class="page-side">
             <div class="sideber d-flex flex-column flex-shrink-0 p-3" style="width: 240px;">
                 <span class="fs-3 sidebar-title">性別</span>
                 <hr>
@@ -25,7 +25,7 @@
                     <li><a href="{{ route('items.index', ['category_name' => 'シューズ']) }}" class="nav-link">シューズ</a></li>
                 </ul>
             </div>
-        </aside>
+        </asid>
         <main class="page-main">
             <div class="row card-list">
                 <!-- card -->
@@ -47,5 +47,8 @@
             {{ $items->links() }}
         </main>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 68be6f3cdb5f38f7008c444bba06140637c839d7
 @endsection
