@@ -15,10 +15,9 @@
         {{-- breadcrumb end --}}
         <h1>商品新規作成</h1>
         <p class="mb-3">{{ now()->format('Y/m/d') }}</p>
-        <form action="{{ route('admin.items.store') }}" method="post" class="form-product-detail">
+        <form action="{{ route('admin.items.store') }}" method="post" enctype="multipart/form-data" class="form-product-detail">
             {{-- CSRF攻撃対策 --}}
             @csrf
-
             {{-- エラーメッセージ --}}
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -48,8 +47,8 @@
                 <tr>
                     <th>イメージ画像</th>
                     <td>
-                        <input class="form-control form-control-lg mb-3" type="file" id="formFile" accept="image/*">
-                        <img src="images/noimg.png" alt="">
+                        <input class="form-control form-control-lg mb-3" type="file" name="image_path" value="{{ old('image_path') }}" id="formFile" accept="image/*">
+                        <img src="{{ old('image') }}" alt="" width="200">
                     </td>
                 </tr>
                 <tr>

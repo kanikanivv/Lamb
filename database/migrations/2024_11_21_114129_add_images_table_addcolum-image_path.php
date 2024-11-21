@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('images', function (Blueprint $table) {
-            $table->string('image_path', 70)->unique()->after('2024_11_21_114129_add_images_table_addcolum-image_path.php');
+            $table->string('image_path', 70)->unique()->after('image_color');
         });
     }
 
