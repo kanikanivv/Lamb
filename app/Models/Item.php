@@ -34,6 +34,4 @@ class Item extends Model
     public function Image() {
         return $this->belongsTo(Image::class, 'item_image_id');
     }
-
-
 }
