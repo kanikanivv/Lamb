@@ -40,6 +40,6 @@ Route::prefix('admin')->name('admin.')->group(function() {
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
         Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
-        Route::delete('{item}',  [AdminItemsController::class, 'destroy'])->name('destroy');
+        Route::delete('index/{id}',  [AdminItemsController::class, 'destroy'])->name('destroy');
     });
 });

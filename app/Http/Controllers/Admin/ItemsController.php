@@ -38,7 +38,7 @@ public function index(Request $request)
     // }
 
     //
-    public function destory($id)
+    public function destroy($id)
     {
         $item = Item::findOrFail($id);
 
