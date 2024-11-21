@@ -61,24 +61,24 @@
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
+                                                src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/FavoriteBorder.svg' }}" alt="お気に入り"></a>
+                                                src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/PersonOutline.svg' }}" alt="プロフィール"></a>
+                                                src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a>
                                     </li>
                                 @else
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('carts.index') }}"><img
-                                                src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
+                                                src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/FavoriteBorder.svg' }}" alt="お気に入り"></a>
+                                                src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/PersonOutline.svg' }}" alt="プロフィール"></a>
+                                                src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a>
                                     </li>
                                     <li class="nav-logout">
                                         <a class="nav-link" href="{{ route('logout') }}"

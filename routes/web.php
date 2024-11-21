@@ -9,8 +9,10 @@ use App\Http\Controllers\CartController;
 
 
 //カート処理
-Route::get('/carts',  [CartController::class, 'index'])->name('carts.index');//表示
-Route::post('carts', [CartController::class, 'store'])->name('carts.store');//追加
+Route::prefix('carts')->name('carts.')->group(function() {
+    Route::get('/',   [CartController::class, 'index'])->name('index');//表示
+    Route::post('/',  [CartController::class, 'store'])->name('store');//追加
+});
 
 
 //新規登録画面から新規登録処理

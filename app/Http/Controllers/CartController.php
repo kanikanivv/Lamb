@@ -8,27 +8,37 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
-    public function index()
+    /**
+     * カートの一覧を表示
+     */
+    public function index(Request $request)
     {
         //カートテーブルの取得
-        $carts = Cart::all();
+        $carts = $request->session()->get('cart', []);
 
-        return view('carts.index', compact('carts'));
+        return view('carts.index', ['cart' => $carts]);
     }
 
-    public function store(Requests $request, Item $item)
+    /**
+     * 商品をカートに追加する
+     */
+    public function store(Requests $request, $id)
     {
-        //ボタンを押すと追加処理
-        $action = $repuest->input('action');
+        $item = Item::find($id);
 
-        $itemId = $request->input('item_id');
-        $count = $request->input('count');
+        // セッションからカート情報を取得する
+        $cart = $request->session()->get('cart', []);
 
-        $cart = session()->get('cart', []);
-        $cart[$itemId] = [
-            'name' => $item->name,
-            'price' => $item->price,
+        // カートに商品を追加する
+        $cart[$item->id] = [
+            'item_name'     => $item->item_name,
+            'item_price'    => $item->item_price,
+            'quantity' => 1, // 初期数量を1にする
         ];
-        session()->put('cart', $cart);
+
+        // カート情報をセッションに保存する
+        $request->session()->put('cart', $cart);
+
+        return redirect()->route(carts.index);
     }
  }
