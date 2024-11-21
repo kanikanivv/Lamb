@@ -10,6 +10,7 @@ use App\Models\Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class ItemsController extends Controller
 {

@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Item;
-use App\Models\Gender;
-use App\Models\Category;
-use App\Models\Size;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Models\Item;
+use App\Models\Gender;
+use App\Models\Category;
+use App\Models\Size;
 
 class ItemsController extends Controller
 {
+
+    /**
+     * 商品一覧の表示
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function index(Request $request)
+    {
+        $items = Item::orderby('created_at', 'desc')->Paginate(10);
+
+        return view('admin.items.index', compact('items'));
+    }
+
+
     /**
      * 商品の新規作成画面を表示
      *
@@ -30,6 +46,7 @@ class ItemsController extends Controller
         }
         return view('admin.items.create', compact('categories', 'sizes', 'genders'));
     }
+
 
     /**
      * 商品の新規作成画面で商品を保存

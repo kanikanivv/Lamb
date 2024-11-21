@@ -5,28 +5,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="description" content="Lamb">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
+    {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- icon  -->
+    {{-- icon  --}}
     <link rel="icon" href="images/favicon.png" type="image/png">
 
-    <!-- Fonts -->
+    {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Styles -->
+    {{-- Styles --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('/css/admin-style.css') }}">
 </head>
@@ -42,7 +42,7 @@
         <!-- sidebar -->
         <aside class="sidebar">
             <div class="sidebar-items">
-                <div class="sidebar-item"><a href="product.html">
+                <div class="sidebar-item"><a href="{{ route('admin.items.index') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-bag-fill" viewBox="0 0 16 16">
                             <path

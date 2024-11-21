@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\Admin\ItemsController as AdminItemsController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\CartController;
+
+
+
+//カート処理
+Route::get('/carts',  [CartController::class, 'index'])->name('carts.index');//表示
+Route::post('carts', [CartController::class, 'store'])->name('carts.store');//追加
+
 
 //新規登録画面から新規登録処理
 Auth::routes();
@@ -22,11 +30,12 @@ Route::get('/address', [OrderController::class, 'index'])->name('order.index');
 // 購入完了
 Route::get('/thanks', [ItemsController::class, 'done'])->name('items.done');
 
-// 管理画面
+// admin:管理画面
 Route::prefix('admin')->name('admin.')->group(function() {
 
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
+        Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
         Route::get('create',  [AdminItemsController::class, 'create'])->name('create');
         Route::post('store',  [AdminItemsController::class, 'store'])->name('store');
     });

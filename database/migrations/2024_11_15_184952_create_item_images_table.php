@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('image_id');
             $table->unsignedBigInteger('item_id');
             $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable;
-            
+            $table->timestamp('updated_at')->nullable();
+
             //外部キー制約
             $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
