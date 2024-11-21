@@ -35,11 +35,11 @@ Route::get('/address', [OrderController::class, 'index'])->name('order.index');
 Route::get('/thanks', [ItemsController::class, 'done'])->name('items.done');
 
 // 管理画面
-Route::prefix('admin')->name('admin')->group(function() {
+Route::prefix('admin')->name('admin.')->group(function() {
 
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
-        Route::get('index',   [AdminItemsController::class, 'index'])->name('items.index');
-        Route::get('create', [AdminItemsController::class, 'create'])->name('items.create');
+        Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
+        Route::delete('{item}',  [AdminItemsController::class, 'destroy'])->name('destroy');
     });
 });

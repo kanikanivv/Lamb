@@ -21,28 +21,31 @@ public function index(Request $request)
 
     return view('admin.items.index', compact('items'));
 }
-    // /**
-    //  * 商品の追加
-    //  *
-    //  * @return void
-    //  */
-    // public function create(Request $request): object
-    // {
+
+// /**
+//  * 商品の新規登録画面表示
+//  *
+//  * @return void
+//  */
+// public function create(Request $request): object
+// {
     //     $categories = Category::all();
     //     $sizes      = Size::all();
     //     $genders    = Gender::all();
 
-    //     // POST送信したデータを取得して、itemテーブルに追加
-    //     DB::table('items')->insert([
-    //         'id'                => $request->input('id'),
-    //         'item_category_id'  => $request->input('item_category_id'),
-    //         'item_size_id'      => $request->input('item_size_id'),
-    //         'item_gender_id'    => $request->input('item_gender_id'),
-    //         'item_name'         => $request->input('item_name'),
-    //         'item_price'        => $request->input('item_price'),
-    //         'item_comment'      => $request->input('item_comment'),
-    //     ]);
+    //     return view('admin.items.create');
 
-    //     return view('admin.items.create', compact('input', 'categories', 'sizes', 'genders'));
     // }
+
+    //
+    public function destory($id)
+    {
+        $item = Item::findOrFail($id);
+
+        // 商品を削除
+        $item->delete();
+
+ return redirect()->route('admin.items.index')->with('delete', '商品が削除されました。');
+}
+
 }
