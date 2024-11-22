@@ -40,7 +40,7 @@
                         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-4">
                         <div class="col-md-3 mb-2 mb-md-0">
                             <a class="navbar-brand logo d-inline-flex link-body-emphasis text-decoration-none"
-                                href="{{ url('/') }}">
+                                href="{{ route('items.index') }}">
                                 {{ config('app.name', 'Laravel') }}
                             </a>
                         </div>
@@ -60,25 +60,19 @@
                                 @guest
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
+                                        <a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a>
                                     </li>
                                 @else
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('carts.index') }}"><img
-                                                src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
+                                        <a class="nav-link" href="{{-- route('carts.index') --}}"><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a>
                                     </li>
                                     <li class="nav-logout">
                                         <a class="nav-link" href="{{ route('logout') }}"

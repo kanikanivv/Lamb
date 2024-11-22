@@ -63,10 +63,11 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
+        $sizes = Size::orderBy('id', 'desc')->get();
         $item          = Item::find($id);
         $category_name = Category::where('category_name', $id);
 
-        return view('items.show', compact('item'));
+        return view('items.show', compact('item', 'sizes'));
     }
 
     /**

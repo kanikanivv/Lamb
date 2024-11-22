@@ -9,10 +9,10 @@ use App\Http\Controllers\CartController;
 
 
 //カート処理
-Route::prefix('carts')->name('carts.')->group(function() {
-    Route::get('/',   [CartController::class, 'index'])->name('index');//表示
-    Route::post('/',  [CartController::class, 'store'])->name('store');//追加
-});
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{productId}', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/update/{productId}', [CartController::class, 'update'])->name('cart.update');
 
 
 //新規登録画面から新規登録処理

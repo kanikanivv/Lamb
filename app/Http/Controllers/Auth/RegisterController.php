@@ -46,7 +46,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(LoginRequest $request)
     {
         $this->middleware('guest');
     }
