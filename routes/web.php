@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\Admin\ItemsController as AdminItemsController;
+use App\Http\Controllers\Admin\CategoriesController as AdminCategoriesController;
+use App\Http\Controllers\Admin\SizesController as AdminSizesController;
+use App\Http\Controllers\Admin\GendersController as AdminGendersController;
+use App\Http\Controllers\Admin\ItemsCategoryController as AdminItemsCategoryController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\CartController;
 
@@ -39,7 +43,29 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
-        Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
+        Route::get('index',          [AdminItemsController::class, 'index'])->name('index');
         Route::delete('index/{id}',  [AdminItemsController::class, 'destroy'])->name('destroy');
+    });
+
+    //カテゴリー一覧
+    Route::prefix('categories')->name('categories.')->group(function() {
+        Route::get('index',         [AdminCategoriesController::class, 'index'])->name('index');
+        //アイテム一覧表示
+        Route::get('/itemscategory/index',                 [AdminItemsCategoryController::class, 'index'])->name('itemscategory.index');
+        //アイテム編集画面表示
+        Route::get('/itemscategory/create',                [AdminItemsCategoryController::class, 'create'])->name('itemscategory.create');
+        //アイテム新規追加処理
+        Route::post('/itemscategory/store',                [AdminItemsCategoryController::class, 'store'])->name('itemscategory.store');
+        //アイテム新規登録画面表示
+        Route::get('/itemscategory/{itemcategory}/edit',   [AdminItemsCategoryController::class, 'edit'])->name('itemscategory.edit');
+        //アイテム更新処理
+        Route::put('/itemscategory/{id}',                  [AdminItemsCategoryController::class, 'update'])->name('itemscategory.update');
+        //アイテム削除処理
+        //Route::delete('/itemscategory/{id}',           [AdminItemsCategoryController::class, 'destroy'])->name('itemscategory.destroy');
+
+        //サイズ一覧表示
+        Route::get('/sizes/index', [AdminSizesController::class, 'index'])->name('sizes.index');
+        //性別一覧表示
+        Route::get('/genders/index', [AdminGendersController::class, 'index'])->name('genders.index');
     });
 });

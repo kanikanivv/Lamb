@@ -11,24 +11,23 @@ use App\Models\Size;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 
-class ItemsController extends Controller
+class ItemsCategoryController extends Controller
 {
+    //商品の表示
+    public function index(Request $request)
+    {
+        $items = Item::orderby('created_at', 'desc')->Paginate(10);
 
-//商品の表示
-public function index(Request $request)
-{
-    $items = Item::orderby('created_at', 'desc')->Paginate(10);
+        return view('admin.items.index', compact('items'));
+    }
 
-    return view('admin.items.index', compact('items'));
-}
-
-// /**
-//  * 商品の新規登録画面表示
-//  *
-//  * @return void
-//  */
-// public function create(Request $request): object
-// {
+    // /**
+    //  * 商品の新規登録画面表示
+    //  *
+    //  * @return void
+    //  */
+    // public function create(Request $request): object
+    // {
     //     $categories = Category::all();
     //     $sizes      = Size::all();
     //     $genders    = Gender::all();
@@ -45,7 +44,6 @@ public function index(Request $request)
         // 商品を削除
         $item->delete();
 
- return redirect()->route('admin.items.index')->with('delete', '商品が削除されました。');
-}
-
+        return redirect()->route('admin.items.index');
+    }
 }
