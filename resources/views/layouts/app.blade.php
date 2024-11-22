@@ -68,7 +68,7 @@
                                     </li>
                                 @else
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{-- route('carts.index') --}}"><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
+                                        <a class="nav-link" href="{{ route('carts.index') }}"><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
                                     </li>

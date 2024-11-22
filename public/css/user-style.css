@@ -333,6 +333,10 @@ h2 {
   font-weight: bold;
   background: #f85b00;
 }
+
+.product-detail .submit:hover {
+  background: #f5752b;
+}
 .product-detail .product-explanation {
   position: relative;
   padding-left: 32px;

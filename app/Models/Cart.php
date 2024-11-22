@@ -15,13 +15,13 @@ class Cart extends Model
         'count',
     ];
 
-    public function items()
+    public function item()
     {
-        return $this->belongTo(Item::class);
+        return $this->belongsTo(Item::class);
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

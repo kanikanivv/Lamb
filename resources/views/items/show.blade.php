@@ -16,6 +16,7 @@
                 </div>
                 <div class="col">
                     <form action="{{ route('carts.store') }}" method="post">
+                        @csrf
                         <p class="category">{{ $item->category->category_name }}</p>
                         <div class="product-name">{{ $item->item_name }}</div>
                         <input type="hidden" name="item_id" value="{{ $item->id }}" required>
@@ -44,7 +45,7 @@
                                 </select>
                             </div>
                         </div>
-                        <input class="btn btn-primary submit" type="submit" value="カートに入れる" name="action">
+                        <input class="btn btn-primary submit" type="submit" value="カートに入れる" name="action" value="cart">
                     </form>
                 </div>
             </div>
