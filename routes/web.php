@@ -61,7 +61,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         //アイテム更新処理
         Route::put('/itemscategory/{id}',                  [AdminItemsCategoryController::class, 'update'])->name('itemscategory.update');
         //アイテム削除処理
-        //Route::delete('/itemscategory/{id}',           [AdminItemsCategoryController::class, 'destroy'])->name('itemscategory.destroy');
+        //Route::delete('/itemscategory/{id}',             [AdminItemsCategoryController::class, 'destroy'])->name('itemscategory.destroy');
 
         //サイズ一覧表示
         Route::get('/sizes/index', [AdminSizesController::class, 'index'])->name('sizes.index');
