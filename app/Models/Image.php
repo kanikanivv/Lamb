@@ -13,7 +13,7 @@ class Image extends Model
         'update_at'
     ];
 
-    public function ItemImage() {
-        return $this->hasMany(ItemImage::class, 'image_id');
+    public function items() {
+        return $this->belongsToMany(Item::class, 'image_item');
     }
 }

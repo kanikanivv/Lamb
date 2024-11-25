@@ -16,7 +16,6 @@
         <h1>商品新規作成</h1>
         <p class="mb-3">{{ now()->format('Y/m/d') }}</p>
         <form action="{{ route('admin.items.store') }}" method="post" enctype="multipart/form-data" class="form-product-detail">
-            {{-- CSRF攻撃対策 --}}
             @csrf
             {{-- エラーメッセージ --}}
             @if ($errors->any())
@@ -47,7 +46,9 @@
                 <tr>
                     <th>イメージ画像</th>
                     <td>
-                        <input class="form-control form-control-lg mb-3" type="file" name="image_path" value="{{ old('image_path') }}" id="formFile" accept="image/*">
+                        <input class="form-control form-control-lg mb-3" type="file" name="images[]" value="{{ old('image_path') }}" id="formFile" accept="image/*" max="4">
+                        @freoreach($item->imahes as $image)
+
                         <img src="{{ old('image') }}" alt="" width="200">
                     </td>
                 </tr>

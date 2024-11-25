@@ -8,10 +8,9 @@
             <div class="product-detail-top row">
                 <div class="col">
                     <div class="product-images">
-                        <img src="{{ asset('images/test.png') }}" alt="">
-                        <img src="{{ asset('images/test.png') }}" alt="">
-                        <img src="{{ asset('images/test.png') }}" alt="">
-                        <img src="{{ asset('images/test.png') }}" alt="">
+                        @foreach($images as $image)<i class="fa fa-xingxxforeach" aria-hidden="true"></i>
+                        foreach
+                        @endforeach
                     </div>
                 </div>
                 <div class="col">

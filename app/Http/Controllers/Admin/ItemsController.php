@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
-use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Models\Item;
 use App\Models\Gender;
 use App\Models\Category;
 use App\Models\Size;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ItemsController extends Controller
 {
@@ -55,6 +55,28 @@ class ItemsController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
+        $image = new Image;
+        $image->name = $request->name;
+        $path = $request->file('image')->store('public/image');
+        $filename = basename($path);
+        $item->image = $filename;
+        $item->save();
+
+        $item = new Item();
+        $item->item_name = $request->input('item_name');
+        $item->save();
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $path = $imageFile->store('images', 'public');
+
+                $image = Image::create(['path' => $path]);
+
+                $item->images()->attach($image);
+            }
+        }
+
         // バリデーション
         $validated = $request->validate([
             'item_category_id'  => 'required|integer|exists:item_categories,id',
@@ -64,6 +86,8 @@ class ItemsController extends Controller
             'item_price'        => 'required|numeric|min:0',
             'item_comment'      => 'nullable|string|max:1000',
             'item_count'        => 'nullable|numeric|min:0',
+            'images'            => 'array|max:4',
+            'images.*'          => 'image|mimes:jpeg,png,jpg,git,svg|max:2048',
         ]);
 
         // バリデーションが成功した場合、データベースに保存

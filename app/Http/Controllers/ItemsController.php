@@ -52,7 +52,9 @@ class ItemsController extends Controller
         // 商品の取得
         $items = $query->paginate(20);
 
-        return view('items.index', compact('items', 'gender_name', 'category_name'));
+        $item_image = Item::with('images')->get();
+
+        return view('items.index', compact('items', 'gender_name', 'category_name', 'item_image'));
     }
 
     /**
