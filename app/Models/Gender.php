@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gender extends Model
 {
     protected $table = 'genders';
-    protected $fillabe = [
+    protected $fillable = [
         'gender_name',
         'created_at',
         'update_at'

@@ -72,7 +72,7 @@ class ItemsSeeder extends Seeder
                 'item_size_id'     => $faker->numberBetween(1, 3),
                 'item_gender_id'   => $faker->numberBetween(1, 3),
                 'item_name'        => $itemTitle[mt_rand(0, array_key_last($itemTitle))],
-                'price'            => $faker->numberBetween(1000, 3000),
+                'item_price'            => $faker->numberBetween(1000, 3000),
                 'item_comment'     => $itemComment[mt_rand(0, array_key_last($itemComment))],
                 'item_count'       => 20,
                 'created_at'       => $faker->dateTime('now'),

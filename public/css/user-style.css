@@ -687,7 +687,7 @@ h2 {
 .membership .members-btn .btn-primary:active {
   background: #a48937;
   border-color: #a48937;
-<<<<<<< HEAD
+
 }
 /*-------------------------
     追加
@@ -702,8 +702,19 @@ h2 {
     text-decoration: none;
 }
 
+/*-------------------------
+    追加
+-------------------------*/
+.nav-logout {
+    margin-top: 5px;
+    font-size: 15px;
+}
+.nav-logout a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
 
 /*# sourceMappingURL=style.css.map */
-=======
-}/*# sourceMappingURL=style.css.map */
->>>>>>> feature/202411/sekiya
+
+/*# sourceMappingURL=style.css.map */

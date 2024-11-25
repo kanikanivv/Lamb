@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('item_count');
             $table->integer('price');
             $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable;
+            $table->timestamp('updated_at')->nullable();
             
             //外部キー制約
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

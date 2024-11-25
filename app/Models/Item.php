@@ -13,7 +13,7 @@ class Item extends Model
         'item_size_id',
         'item_gender_id',
         'item_name',
-        'price',
+        'item_price',
         'item_comment',
         'item_count',
         'created_at',
@@ -34,5 +34,4 @@ class Item extends Model
     public function Image() {
         return $this->belongsTo(Image::class, 'item_image_id');
     }
-
 }

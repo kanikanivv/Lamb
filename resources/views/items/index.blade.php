@@ -47,4 +47,5 @@
             {{ $items->links() }}
         </main>
     </div>
+
 @endsection
