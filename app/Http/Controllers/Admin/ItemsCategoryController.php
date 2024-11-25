@@ -52,24 +52,23 @@ class ItemsCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'category' => 'required|max:60',
+        $validated = $request->validate([
+            'category_name' => 'required|max:60',
         ]);
 
-        $itemcategory = new Category;
-        // $itemcategory->id = auth()->user()->id;
-        $itemcategory->category_name = $request->input('category_name');
+        $itemcategory = new Category();
+        $itemcategory->category_name = $validated['category_name'];
         $itemcategory->save();
 
-        return redirect(route('admin.categories.itemscategory.index', compact('itemcategory')))->with('create', 'アイテムを追加しました');
+        return redirect()->route('admin.categories.itemscategory.index')->with('create', 'アイテムを追加しました');
     }
 
     public function destroy($id)
     {
-        $item = Category::findOrFail($id);
+        $itemcategory = Category::findOrFail($id);
 
         // 商品を削除
-        $item->delete();
+        $itemcategory->delete();
 
         return redirect()->route('admin.categories.itemscategory.index');
     }

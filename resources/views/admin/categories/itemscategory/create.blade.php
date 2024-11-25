@@ -33,7 +33,6 @@
         <section>
             <form class="item-form" action="{{ route('admin.categories.itemscategory.store')}}" method="POST">
                 @csrf
-                @method('PUT')
                 <table class="table table-px">
                     <thead>
                         <tr class="table-gray">
@@ -42,7 +41,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="text" name="category_name" id="category_name" value="{{old('category_name')}}"></td>
+                            <td><input type="text" name="category_name" value="{{old('category_name', $itemcategory->category_name ?? '')}}"></td>
                         </tr>
                     </tbody>
                 </table>

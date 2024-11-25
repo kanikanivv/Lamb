@@ -43,7 +43,7 @@
                                 <form action="{{ route('admin.items.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                <input class="btn btn-primary" type="submit" value="削除">
+                                <input class="btn btn-primary" type="submit" value="削除" onclick='return confirm("本当に削除しますか？")'>
                                 </form>
                             </td>
                         </tr>

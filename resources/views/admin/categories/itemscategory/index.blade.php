@@ -48,11 +48,13 @@
                                     <button type="submit" class="btn edit-btn">編集</button>
                                 </form>
                             </td>
-                            <form action="">
-                                <td class="text-end">
-                                    <button type="button" class="btn red-delete-btn">削除</button>
-                                </td>
-                            </form>
+                            <td class="text-end">
+                            <form action="{{ route('admin.categories.itemscategory.destroy', $itemcategory->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn red-delete-btn"  onclick='return confirm("本当に削除しますか？")'>削除</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
