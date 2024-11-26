@@ -46,7 +46,7 @@ class LoginController extends Controller
 
             if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
                 $request->session()->regenerate();
-                return redirect()->route('admin.items.index');
+                return redirect()->intended(route('admin.items.index'));
             }
 
             $this->incrementLoginAttempts($request);
