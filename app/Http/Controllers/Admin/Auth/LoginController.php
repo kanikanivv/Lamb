@@ -3,10 +3,23 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class LoginController extends Controller
 {
+
+    use AuthenticatesUsers;
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+
     /**
      * ログインフォーム
      *
@@ -32,6 +45,7 @@ class LoginController extends Controller
             }
 
             if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+                $request->session()->regenerate();
                 return redirect()->route('admin.items.index');
             }
 
