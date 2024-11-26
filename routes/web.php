@@ -38,6 +38,6 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::prefix('items')->name('items.')->group(function() {
         Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
         Route::get('create',  [AdminItemsController::class, 'create'])->name('create');
-        Route::post('store',  [AdminItemsController::class, 'store'])->name('store');
+        Route::post('create',  [AdminItemsController::class, 'store'])->name('store');
     });
 });

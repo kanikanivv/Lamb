@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Item;
+use App\Models\Image;
 use App\Models\Gender;
 use App\Models\Category;
 use App\Models\Size;
@@ -51,59 +52,47 @@ class ItemsController extends Controller
     /**
      * 商品の新規作成画面で商品を保存
      *
-     * @return void
+     * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
     {
+        // バリデーション
+        $validated = $request->validate([
+            'item_category_id'  => 'required|integer|exists:categories,id',
+            'item_size_id'      => 'required|integer|exists:sizes,id',
+            'item_gender_id'    => 'required|integer|exists:genders,id',
+            'item_price'        => 'required|numeric|min:0',
+            'item_comment'      => 'nullable|string|max:1000',
+            'quantity'        => 'nullable|numeric|min:0',
+            'images'            => 'array|max:4',
+            'images.*'          => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-        $image = new Image;
-        $image->name = $request->name;
-        $path = $request->file('image')->store('public/image');
-        $filename = basename($path);
-        $item->image = $filename;
-        $item->save();
-
+        // 商品の保存
         $item = new Item();
-        $item->item_name = $request->input('item_name');
-        $item->save();
+        $item->item_category_id = $validated['item_category_id'];
+        $item->item_size_id     = $validated['item_size_id'];
+        $item->item_gender_id   = $validated['item_gender_id'];
+        $item->item_price       = $validated['item_price'];
+        $item->item_comment     = $validated['item_comment'] ?? null;
+        $item->quantity         = $validated['quantity'] ?? 20;  // デフォルト20
+        $item->save();  // 商品を保存
 
+        // 画像のアップロードと保存
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
+                // 画像をストレージに保存
                 $path = $imageFile->store('images', 'public');
 
+                // 画像をデータベースに保存
                 $image = Image::create(['path' => $path]);
 
+                // 商品と画像を関連付け
                 $item->images()->attach($image);
             }
         }
 
-        // バリデーション
-        $validated = $request->validate([
-            'item_category_id'  => 'required|integer|exists:item_categories,id',
-            'item_size_id'      => 'required|integer|exists:item_sizes,id',
-            'item_gender_id'    => 'required|integer|exists:item_genders,id',
-            'item_name'         => 'required|string|max:60',
-            'item_price'        => 'required|numeric|min:0',
-            'item_comment'      => 'nullable|string|max:1000',
-            'item_count'        => 'nullable|numeric|min:0',
-            'images'            => 'array|max:4',
-            'images.*'          => 'image|mimes:jpeg,png,jpg,git,svg|max:2048',
-        ]);
-
-        // バリデーションが成功した場合、データベースに保存
-        DB::table('items')->insert([
-            'id'                => $validated['id'],
-            'item_category_id'  => $validated['item_category_id'],
-            'item_size_id'      => $validated['item_size_id'],
-            'item_gender_id'    => $validated['item_gender_id'],
-            'item_name'         => $validated['item_name'],
-            'item_price'        => $validated['item_price'],
-            'item_comment'      => $validated['item_comment'] ?? null,
-            'item_count'        => 20,  // 固定値20
-            'created_at'        => now(),
-            'updated_at'        => now(),
-        ]);
-
+        // 作成後、商品一覧ページへリダイレクト
         return to_route('admin.items.index');
     }
 }

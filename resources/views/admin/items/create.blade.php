@@ -47,20 +47,17 @@
                     <th>イメージ画像</th>
                     <td>
                         <input class="form-control form-control-lg mb-3" type="file" name="images[]" value="{{ old('image_path') }}" id="formFile" accept="image/*" max="4">
-                        @freoreach($item->imahes as $image)
-
-                        <img src="{{ old('image') }}" alt="" width="200">
                     </td>
                 </tr>
                 <tr>
                     <th>アイテム</th>
                     <td>
-                        <select name="item-categories_id" id="" class="form-select form-select-lg"
+                        <select name="item_category_id" id="" class="form-select form-select-lg"
                             aria-label=".form-select-lg">
-                            <option value="" disable {{ old('item_categories_id') ? '' : 'selected' }}>選択されていません</option>
+                            <option value="" disable {{ old('item_category_id') ? '' : 'selected' }}>選択されていません</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
-                                    {{ old('item_categories_id') == $category->id ? 'selected' : '' }}>
+                                    {{ old('item_category_id') == $category->id ? 'selected' : '' }}>
                                     {{ $category->category_name }}
                                 </option>
                             @endforeach
@@ -70,12 +67,12 @@
                 <tr>
                     <th>サイズ</th>
                     <td>
-                        <select name="item-size_id" id="" class="form-select form-select-lg"
+                        <select name="item_size_id" id="" class="form-select form-select-lg"
                             aria-label=".form-select-lg">
-                            <option value="" disable {{ old('item-size_id') ? '' : 'selected' }}>選択されていません</option>
+                            <option value="" disable {{ old('item_size_id') ? '' : 'selected' }}>選択されていません</option>
                             @foreach ($sizes as $size)
                                 <option value="{{ $size->id }}"
-                                    {{ old('item_categories_id') == $size->id ? 'selected' : '' }}>
+                                    {{ old('item_size_id') == $size->id ? 'selected' : '' }}>
                                     {{ $size->size_name }}
                                 </option>
                             @endforeach
@@ -94,6 +91,16 @@
                                     {{ $gender->gender_name }}
                                 </option>
                             @endforeach
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>数量</th>
+                    <td>
+                        <select name="quantity" id="" class="form-select form-select-lg"
+                            aria-label=".form-select-lg">
+                            <option value="" disable {{ old('quantity') ? '' : 'selected' }}>選択されていません</option>
+                            <option value="20">20個</option>
                         </select>
                     </td>
                 </tr>
