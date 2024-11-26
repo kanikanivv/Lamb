@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Size;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
@@ -62,6 +63,7 @@ class ItemsController extends Controller
             'item_size_id'      => 'required|integer|exists:sizes,id',
             'item_gender_id'    => 'required|integer|exists:genders,id',
             'item_price'        => 'required|numeric|min:0',
+            'item_name'         => 'required|string|max:20',
             'item_comment'      => 'nullable|string|max:1000',
             'quantity'        => 'nullable|numeric|min:0',
             'images'            => 'array|max:4',
@@ -73,8 +75,10 @@ class ItemsController extends Controller
         $item->item_category_id = $validated['item_category_id'];
         $item->item_size_id     = $validated['item_size_id'];
         $item->item_gender_id   = $validated['item_gender_id'];
+        $item->item_name        = $validated['item_name'];
         $item->item_price       = $validated['item_price'];
         $item->item_comment     = $validated['item_comment'] ?? null;
+        $item->quantity         = $validated['quantity'] ?? 20;  // デフォルト20
         $item->quantity         = $validated['quantity'] ?? 20;  // デフォルト20
         $item->save();  // 商品を保存
 
@@ -93,6 +97,6 @@ class ItemsController extends Controller
         }
 
         // 作成後、商品一覧ページへリダイレクト
-        return to_route('admin.items.index');
+        return redirect()->route('admin.items.index');
     }
 }
