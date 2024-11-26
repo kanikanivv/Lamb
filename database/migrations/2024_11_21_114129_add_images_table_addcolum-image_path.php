@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('images', function (Blueprint $table) {
             $table->string('path', 70)->unique()->after('image_color');
-            $table->renameColumn('image_name', 'name');
             $table->renameColumn('image_color', 'color');
         });
     }
@@ -25,7 +24,6 @@ return new class extends Migration
     {
         Schema::table('images', function (Blueprint $table) {
             $table->dropColumn('path');
-            $table->renameColumn('name', 'image_name');
             $table->renameColumn('color', 'image_color');
         });
     }
