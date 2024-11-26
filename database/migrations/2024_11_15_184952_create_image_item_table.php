@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('item_images', function (Blueprint $table) {
+        Schema::create('image_item', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('image_id');
             $table->unsignedBigInteger('item_id');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
-            
+
             //外部キー制約
             $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');

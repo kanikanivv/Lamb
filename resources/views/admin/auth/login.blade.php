@@ -30,27 +30,51 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('/css/admin-style.css') }}">
 </head>
-    <body class="admin-login">
-        <div class="container page-parent container-admin-login">
-            <main class="page-main">
-                <div class="admin-login-block">
-                    <section class="login-form-sec">
-                        <div class="admin-title">{{__('admin-title')}}</div>
-                        <form class="admin-form-login">
-                            <div class="mb-3 admin-form">
-                                <label for="exampleInputEmail1" class="admin-form-label">{{__('email')}}</label>
-                                <input type="email" class="form-control admin-form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="メールアドレスを入力してください">
+
+<body class="admin-login">
+    <div class="container page-parent container-admin-login">
+        <main class="page-main">
+            <div class="admin-login-block">
+                <section class="login-form-sec">
+                    <div class="admin-title">{{ __('admin-title') }}</div>
+                    <form class="admin-form-login" action="{{ route('admin.login') }}">
+                        @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <div class="mb-3 admin-form">
-                                <label for="exampleInputPassword1" class="admin-form-label">{{__('password')}}</label>
-                                <input type="password" class="form-control admin-form-control" id="exampleInputPassword1" placeholder="パスワードを入力してください">
+                        @endif
+                        <div class="mb-3 admin-form">
+                            <label for="exampleInputEmail1" class="admin-form-label">{{ __('email') }}</label>
+                            <input type="email" class="form-control admin-form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="メールアドレスを入力してください">
+                        </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <div class="admin-btn"><button type="submit" class="login-btn btn">{{__('login')}}</button></div>
-                        </form>
-                    </section>
-                </div>
-            </main>
-            <aside class="page-side"></aside>
-        </div>
-    </body>
+                        @endif
+                        <div class="mb-3 admin-form">
+                            <label for="exampleInputPassword1" class="admin-form-label">{{ __('password') }}</label>
+                            <input type="password" class="form-control admin-form-control" id="exampleInputPassword1"
+                                placeholder="パスワードを入力してください">
+                        </div>
+                        <div class="admin-btn"><button type="submit"
+                                class="login-btn btn">{{ __('login') }}</button></div>
+                    </form>
+                </section>
+            </div>
+        </main>
+        <aside class="page-side"></aside>
+    </div>
+</body>
+
 </html>

@@ -39,7 +39,7 @@ return new class extends Migration
              $table->rememberToken()->change();
              $table->timestamps()->change();
             //$table->integer('age');
-            
+
         });
 
     }

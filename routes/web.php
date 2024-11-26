@@ -13,18 +13,18 @@ use App\Http\Controllers\CartController;
 
 
 
-
 //カート処理
-Route::get('/carts',  [CartController::class, 'index'])->name('carts.index');//表示
-Route::post('carts',  [CartController::class, 'store'])->name('carts.store');//追加
+
+Route::prefix('carts')->name('carts.')->group(function() {
+    Route::get('/',  [CartController::class, 'index'])->name('index');
+    Route::post('/', [CartController::class, 'store'])->name('store');
+});
 
 
 //新規登録画面から新規登録処理
 Auth::routes();
 Route::get('/register',  [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
-
-Route::get('/items', [ItemsController::class, 'index']);
 
 
 // 商品一覧
@@ -33,11 +33,14 @@ Route::prefix('items')->name('items.')->group(function() {
     Route::get('/{id}', [ItemsController::class, 'show'])->name('show');
 });
 
+
 // お届け先確認画面
 Route::get('/address', [OrderController::class, 'index'])->name('order.index');
 
+
 // 購入完了
 Route::get('/thanks', [ItemsController::class, 'done'])->name('items.done');
+
 
 //ログイン機能
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -47,13 +50,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('login', [LoginController::class, 'adminLogin'])->name('login');
 });
 
+
 // 管理画面
 Route::prefix('admin')->name('admin.')->group(function() {
+
+
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
-        Route::get('index',          [AdminItemsController::class, 'index'])->name('index');
-        Route::delete('index/{id}',  [AdminItemsController::class, 'destroy'])->name('destroy');
+        Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
+        Route::get('create',  [AdminItemsController::class, 'create'])->name('create');
+        Route::post('store',  [AdminItemsController::class, 'store'])->name('store');
     });
+
 
     //カテゴリー一覧
     Route::prefix('categories')->name('categories.')->group(function() {
@@ -72,9 +80,12 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/itemscategory/{id}',                  [AdminItemsCategoryController::class, 'destroy'])->name('itemscategory.destroy');
         Route::delete('/itemscategory/{id}',               [AdminItemsCategoryController::class, 'destroy'])->name('itemscategory.destroy');
 
-        //サイズ一覧表示
-        Route::get('/sizes/index', [AdminSizesController::class, 'index'])->name('sizes.index');
-        //性別一覧表示
-        Route::get('/genders/index', [AdminGendersController::class, 'index'])->name('genders.index');
+
+    //サイズ一覧表示
+    Route::get('/sizes/index', [AdminSizesController::class, 'index'])->name('sizes.index');
+
+
+    //性別一覧表示
+    Route::get('/genders/index', [AdminGendersController::class, 'index'])->name('genders.index');
     });
 });

@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 
-
 class ItemsController extends Controller
 {
     /**
@@ -53,7 +52,9 @@ class ItemsController extends Controller
         // 商品の取得
         $items = $query->paginate(20);
 
-        return view('items.index', compact('items', 'gender_name', 'category_name'));
+        $item_image = Item::with('images')->get();
+
+        return view('items.index', compact('items', 'gender_name', 'category_name', 'item_image'));
     }
 
     /**
@@ -64,35 +65,11 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
+        $sizes = Size::orderBy('id', 'desc')->get();
         $item          = Item::find($id);
         $category_name = Category::where('category_name', $id);
 
-        return view('items.show', compact('item'));
-    }
-
-    /**
-     * 商品の追加
-     *
-     * @return void
-     */
-    public function create(Request $request): object
-    {
-        $categories = Category::all();
-        $sizes      = Size::all();
-        $genders    = Gender::all();
-
-        // POST送信したデータを取得して、itemテーブルに追加
-        DB::table('items')->insert([
-            'id'                => $request->input('id'),
-            'item_category_id'  => $request->input('item_category_id'),
-            'item_size_id'      => $request->input('item_size_id'),
-            'item_gender_id'    => $request->input('item_gender_id'),
-            'item_name'         => $request->input('item_name'),
-            'item_price'        => $request->input('item_price'),
-            'item_comment'      => $request->input('item_comment'),
-        ]);
-
-        return view('admin.items.create', compact('input', 'categories', 'sizes', 'genders'));
+        return view('items.show', compact('item', 'sizes'));
     }
 
     /**

@@ -5,28 +5,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="description" content="Lamb">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
+    {{-- Fonts --}}
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Styles -->
+    {{-- Styles --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('/css/user-style.css') }}">
 
 
-    <!-- Scripts -->
+    {{-- Scripts --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -40,7 +40,7 @@
                         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-4">
                         <div class="col-md-3 mb-2 mb-md-0">
                             <a class="navbar-brand logo d-inline-flex link-body-emphasis text-decoration-none"
-                                href="{{ url('/') }}">
+                                href="{{ route('items.index') }}">
                                 {{ config('app.name', 'Laravel') }}
                             </a>
                         </div>
@@ -60,30 +60,24 @@
                                 @guest
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
+                                        <a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/FavoriteBorder.svg' }}" alt="お気に入り"></a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/PersonOutline.svg' }}" alt="プロフィール"></a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a>
                                     </li>
                                 @else
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('carts.index') }}"><img
-                                                src="{{ 'images/AddShoppingCart.svg' }}" alt="カート"></a>
+                                        <a class="nav-link" href="{{ route('carts.index') }}"><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/FavoriteBorder.svg' }}" alt="お気に入り"></a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/FavoriteBorder.svg') }}" alt="お気に入り"></a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img
-                                                src="{{ 'images/PersonOutline.svg' }}" alt="プロフィール"></a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/PersonOutline.svg') }}" alt="プロフィール"></a>
                                     </li>
                                     <li class="nav-logout">
                                         <a class="nav-link" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            {{ __('ログアウト') }}
+                                            {{ __('logout') }}
                                         </a>
                                     </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
