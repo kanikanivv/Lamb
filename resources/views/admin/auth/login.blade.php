@@ -37,7 +37,7 @@
             <div class="admin-login-block">
                 <section class="login-form-sec">
                     <div class="admin-title">{{ __('admin-title') }}</div>
-                    <form class="admin-form-login" action="{{ route('admin.login') }}">
+                    <form class="admin-form-login" action="{{ route('admin.login') }}" method="post">
                         @csrf
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -53,15 +53,6 @@
                             <input type="email" class="form-control admin-form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp" placeholder="メールアドレスを入力してください">
                         </div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <div class="mb-3 admin-form">
                             <label for="exampleInputPassword1" class="admin-form-label">{{ __('password') }}</label>
                             <input type="password" class="form-control admin-form-control" id="exampleInputPassword1"
