@@ -16,6 +16,7 @@
     <!-- product list -->
     <div class="product-list">
         <div class="sign-up-btn"><a class="btn btn-primary" href="{{ route('admin.items.create') }}" role="button">新規登録</a></div>
+
         <!-- admin table -->
         <div class="admin-table">
             <!-- table -->
@@ -39,7 +40,12 @@
                             <td class="admin-category-td">1</a></td>
                             <td class="admin-category-td">{{$item->created_at}}</td>
                             <td class="item-btn admin-category-td">
-                                <input class="btn btn-primary" type="button" value="削除">
+
+                                {{-- <form action="{{ route('admin.items.destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                <input class="btn btn-primary" type="submit" value="削除" onclick='return confirm("本当に削除しますか？")'>
+                                </form> --}}
                             </td>
                         </tr>
                         @endforeach

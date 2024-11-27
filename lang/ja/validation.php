@@ -221,6 +221,10 @@ return [
         'total_price'          => '合計金額',
         'review'               => 'レビュー',
         'item_count'           => '個数',
+        'admin-title'          => 'Lamb',
+        'email'                => 'メールアドレス',
+        'password'             => 'パスワード',
+        'login'                => 'ログイン'
     ],
 
 ];

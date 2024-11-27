@@ -77,7 +77,7 @@
                                     <li class="nav-logout">
                                         <a class="nav-link" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            {{ __('ログアウト') }}
+                                            {{ __('logout') }}
                                         </a>
                                     </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
