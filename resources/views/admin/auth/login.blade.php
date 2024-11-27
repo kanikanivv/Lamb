@@ -49,13 +49,13 @@
                             </div>
                         @endif
                         <div class="mb-3 admin-form">
-                            <label for="exampleInputEmail1" class="admin-form-label">{{ __('email') }}</label>
-                            <input type="email" class="form-control admin-form-control" id="exampleInputEmail1"
+                            <label for="exampleInputEmail" class="admin-form-label">{{ __('email') }}</label>
+                            <input type="email" class="form-control admin-form-control" id="exampleInputEmail"
                                 aria-describedby="emailHelp" placeholder="メールアドレスを入力してください">
                         </div>
                         <div class="mb-3 admin-form">
-                            <label for="exampleInputPassword1" class="admin-form-label">{{ __('password') }}</label>
-                            <input type="password" class="form-control admin-form-control" id="exampleInputPassword1"
+                            <label for="exampleInputPassword" class="admin-form-label">{{ __('password') }}</label>
+                            <input type="password" class="form-control admin-form-control" id="exampleInputPassword"
                                 placeholder="パスワードを入力してください">
                         </div>
                         <div class="admin-btn"><button type="submit"

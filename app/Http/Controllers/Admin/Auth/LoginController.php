@@ -32,10 +32,10 @@ class LoginController extends Controller
 
     public function adminLogin(Request $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:8'
-        ]);
+        // $this->validate($request, [
+        //     'email'   => 'required|email',
+        //     'password' => 'required|min:8'
+        // ]);
 
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
@@ -43,7 +43,6 @@ class LoginController extends Controller
 
                 return $this->sendLockoutResponse($request);
             }
-
             if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
                 $request->session()->regenerate();
                 return redirect()->intended(route('admin.items.index'));
@@ -51,7 +50,7 @@ class LoginController extends Controller
 
             $this->incrementLoginAttempts($request);
             return back()->withInput($request->only('email', 'remember'));
-        }
+    }
 
     /**
      * Create a new controller instance.
@@ -63,6 +62,4 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
-
-
 }

@@ -68,6 +68,8 @@ class RegisterController extends Controller
             'address'   => ['required', 'string', 'max:150'],
             'age'       => ['required', 'integer']
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
     }
 
     /**
