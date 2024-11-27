@@ -32,19 +32,22 @@
 </head>
 
 <body>
-    @guest
+    @if (Auth::guard('admin')->check() && !session()->has('remember'))
     <div class="header-wrpper ">
         <header class="d-flex justify-content-between py-4 px-4">
             <span class="logo"><a href="/">{{ __('admin-title') }}</a></span>
-            <li class="nav-logout">
-                <a class="nav-link" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    {{ __('logout') }}
-                </a>
-            </li>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            <ul>
+                <li class="nav-logout">
+                    <a class="nav-link" href="{{ route('admin.logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('logout') }}
+                    </a>
+                </li>
+            </ul>
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                 @csrf</form>
     </div>
+
     <div class="admin-container container">
         <!-- sidebar -->
         <aside class="sidebar">
@@ -78,14 +81,14 @@
             <div class="header-wrpper ">
                 <header class="d-flex justify-content-between py-4 px-4">
                     <span class="logo"><a href="/">{{ __('admin-title') }}</a></span>
-                    <li class="nav-logout">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('logout') }}
-                        </a>
-                    </li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf</form>
+                    <ul>
+                        <li class="nav-logout">
+                            <a class="nav-link" href="{{ route('admin.login') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('login') }}
+                            </a>
+                        </li>
+                    </ul>
             </div>
             <div class="admin-container container">
                 <!-- sidebar -->
@@ -117,7 +120,7 @@
                         </a></div>
                 </div>
 
-            @endguest
+            @endif
         </aside>
         <!-- sidebar end -->
 

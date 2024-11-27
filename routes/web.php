@@ -45,9 +45,11 @@ Route::get('/thanks', [ItemsController::class, 'done'])->name('items.done');
 //ログイン機能
 Route::prefix('admin')->name('admin.')->group(function () {
     //管理者ログインフォームの表示
-    Route::get('login',  [LoginController::class, 'showLoginForm']);
+    Route::get('login',     [LoginController::class, 'showLoginForm']);
     //管理者ログイン処理
-    Route::post('login', [LoginController::class, 'adminLogin'])->name('login');
+    Route::post('login',    [LoginController::class, 'adminLogin'])->name('login');
+    //管理者ログアウト処理
+    Route::post('logout',   [LoginController::class, 'logout'])->name('logout');
 });
 
 

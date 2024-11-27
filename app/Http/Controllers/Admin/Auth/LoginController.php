@@ -32,20 +32,25 @@ class LoginController extends Controller
 
     public function adminLogin(Request $request)
     {
-        // $this->validate($request, [
-        //     'email'   => 'required|email',
-        //     'password' => 'required|min:8'
-        // ]);
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:5'
+        ]);
 
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
                 $this->fireLockoutEvent($request);
-
                 return $this->sendLockoutResponse($request);
             }
-            if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember')))
+            {
+                // dd($request->all());
                 $request->session()->regenerate();
                 return redirect()->intended(route('admin.items.index'));
+            } else {
+                // ログイン失敗
+                return back()->withErrors(['login' => 'ログイン情報が正しくありません。']);
             }
 
             $this->incrementLoginAttempts($request);
@@ -57,9 +62,9 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function logout()
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
 }
