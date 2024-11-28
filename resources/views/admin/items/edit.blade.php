@@ -14,6 +14,7 @@
         </nav>
         {{-- breadcrumb end --}}
         <h1>商品詳細</h1>
+        <p><a href="{{ route('admin.items.index') }}">戻る</a></p>
         <form action="{{ route('admin.items.update', $item->id) }}" method="POST" enctype="multipart/form-data" class="form-product-detail">
             @csrf
             @method('PUT')

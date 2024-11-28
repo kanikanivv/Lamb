@@ -14,6 +14,7 @@
         </nav>
         {{-- breadcrumb end --}}
         <h1>商品新規作成</h1>
+        <p><a href="{{ route('admin.items.index') }}">戻る</a></p>
         <p class="mb-3">{{ now()->format('Y/m/d') }}</p>
         <form action="{{ route('admin.items.store') }}" method="post" enctype="multipart/form-data" class="form-product-detail">
             @csrf
