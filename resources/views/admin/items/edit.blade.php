@@ -49,11 +49,14 @@
                 <tr>
                     <th>イメージ画像</th>
                     <td>
-                        <input class="form-control form-control-lg mb-3" type="file" name="images[]" accept="image/*" id="formFile">
+                        <!-- 複数の画像選択 -->
+                        <input class="form-control form-control-lg mb-3" type="file" name="images[]" accept="image/*" id="formFile" multiple>
 
                         {{-- 既存の画像があれば表示 --}}
-                        @if ($item->image_path)
-                            <img src="{{ asset('storage/' . $item->image_path) }}" alt="current image" class="mt-2" width="100">
+                        @if ($images->isNotEmpty())
+                            @foreach ($images as $image)
+                                <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $item->item_name }}" class="mt-2" width="100">
+                            @endforeach
                         @endif
                     </td>
                 </tr>

@@ -94,7 +94,7 @@ return [
     'mac_address' => 'The :attribute field must be a valid MAC address.',
     'max' => [
         'array' => 'The :attribute field must not have more than :max items.',
-        'file' => 'The :attribute field must not be greater than :max kilobytes.',
+        'file' => ':attribute は :max キロバイト以上のアップロードはできません。',
         'numeric' => 'The :attribute field must not be greater than :max.',
         'string' => ':attribute は :max 文字以内で入力してください。',
     ],

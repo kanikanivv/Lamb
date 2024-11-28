@@ -46,7 +46,8 @@
                 <tr>
                     <th>イメージ画像</th>
                     <td>
-                        <input class="form-control form-control-lg mb-3" type="file" name="images[]" value="{{ old('image_path') }}" id="formFile" accept="image/*" max="4">
+                        <!-- 複数の画像選択 -->
+                        <input class="form-control form-control-lg mb-3" type="file" name="images[]" accept="image/*" id="formFile" multiple>
                     </td>
                 </tr>
                 <tr>
