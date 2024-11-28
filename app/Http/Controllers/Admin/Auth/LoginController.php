@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-=======
 use App\Models\Admin;
 use Illuminate\Validation\ValidationException;
->>>>>>> remotes/origin/feature/202411/waseda
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 
@@ -30,27 +27,11 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('admin.auth.login');
+        return view('admin.auth.login',  ['authgroup' => 'admin']);
     }
 
-    /**
-     * ログイン機能
-     *
-     * @param Request $request
-     * @return void
-     */
     public function adminLogin(Request $request)
     {
-<<<<<<< HEAD
-        $credentials = $request->validate([
-            'email'    => ['required|email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::guard('admin')->attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            return redirect()->intended(route('admin.items.index'));
-        }
-=======
         $this->validate($request, [
             'email'   => 'required|email',
             'password' => 'required|min:5'
@@ -74,18 +55,6 @@ class LoginController extends Controller
 
             $this->incrementLoginAttempts($request);
             return back()->withInput($request->only('email', 'remember'));
-    }
->>>>>>> remotes/origin/feature/202411/waseda
-
-        if (Auth::guard('admin')->check()) {
-            $adminName = Auth::guard('admin')->user()->name;
-        } else {
-            return redirect()->route('admin.login');
-        }
-
-        throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')],
-        ]);
     }
 
     /**
