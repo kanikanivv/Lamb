@@ -19,6 +19,11 @@
 
         <!-- admin table -->
         <div class="admin-table">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <!-- table -->
             <table class="table">
                 <thead>
@@ -33,9 +38,10 @@
                 <tbody>
                     <div class="category-item-class">
                         @foreach ($items as $item)
-
                         <tr>
-                            <td class="admin-category-td"><a class="link-opacity-100" href="#">{{$item->item_name}}</a></td>
+                            <form action="{{ route('admin.items.edit', $item->id) }}" method="get">
+                            <td class="admin-category-td"><a class="link-opacity-100" href="{{ route('admin.items.edit', $item->id) }}">{{$item->item_name}}</a></td>
+                            </form>
                             <td class="admin-category-td">1</a></td>
                             <td class="admin-category-td">1</a></td>
                             <td class="admin-category-td">{{$item->created_at}}</td>

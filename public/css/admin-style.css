@@ -210,9 +210,12 @@ h1:before {
 .form-product-detail .table-product-detail option {
     font-size: 1.6rem;
 }
+<<<<<<< HEAD
 .form-product-detail .table-product-detail img {
     width: 100%;
 }
+=======
+>>>>>>> feature/202411/sekiya
 .form-product-detail .update-btn {
     width: 400px;
     height: 48px;
@@ -439,6 +442,7 @@ h1:before {
     border-color: #ff0000;
 }
 .product-list .admin-table .item-btn .btn:hover {
+<<<<<<< HEAD
     background-color: #df2020;
     border-color: #df2020;
 }
@@ -503,3 +507,8 @@ button.btn.red-delete-btn {
 
 
 /*# sourceMappingURL=style.css.map */
+=======
+  background-color: #df2020;
+  border-color: #df2020;
+}/*# sourceMappingURL=style.css.map */
+>>>>>>> feature/202411/sekiya
