@@ -9,7 +9,6 @@
                 <h2><strong>{{ __('会員登録') }}</strong></h2>
                 <form action="{{ route('register') }}" method="POST" >
                     @csrf
-
                     <div class="second-membership">
                         <div class="form-group email">
                             <label for="exampleInputEmail">{{ __('メールアドレス') }}</label>

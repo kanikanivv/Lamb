@@ -41,11 +41,11 @@
                             <td class="admin-category-td">{{$item->created_at}}</td>
                             <td class="item-btn admin-category-td">
 
-                                {{-- <form action="{{ route('admin.items.destroy', $item->id) }}" method="POST">
+                                <form action="{{ route('admin.items.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                 <input class="btn btn-primary" type="submit" value="削除" onclick='return confirm("本当に削除しますか？")'>
-                                </form> --}}
+                                </form>
                             </td>
                         </tr>
                         @endforeach

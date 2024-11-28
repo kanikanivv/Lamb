@@ -58,7 +58,6 @@
                             <ul class="tools nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                                 <!-- Authentication Links -->
                                 @guest
-
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('login') }}"><img src="{{ asset('images/AddShoppingCart.svg') }}" alt="カート"></a>
                                     </li>

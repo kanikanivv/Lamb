@@ -32,21 +32,22 @@
 </head>
 
 <body>
-    @guest
+    @if (Auth::guard('admin')->check() && !session()->has('remember'))
     <div class="header-wrpper ">
         <header class="d-flex justify-content-between py-4 px-4">
             <span class="logo"><a href="/">{{ __('admin-title') }}</a></span>
             <ul>
                 <li class="nav-logout">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    <a class="nav-link" href="{{ route('admin.logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('logout') }}
                     </a>
                 </li>
             </ul>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                 @csrf</form>
     </div>
+
     <div class="admin-container container">
         <!-- sidebar -->
         <aside class="sidebar">
@@ -80,21 +81,19 @@
             <div class="header-wrpper ">
                 <header class="d-flex justify-content-between py-4 px-4">
                     <span class="logo"><a href="/">{{ __('admin-title') }}</a></span>
-                    <li class="nav-logout">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('logout') }}
-                        </a>
-                    </li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                    <ul>
+                        <li class="nav-login">
+                            <a class="nav-link" href="{{ route('admin.showlogin') }}">
+                                {{ __('login') }}
+                            </a>
+                        </li>
+                    </ul>
             </div>
             <div class="admin-container container">
                 <!-- sidebar -->
                 <aside class="sidebar">
                 <div class="sidebar-items">
-                    <div class="sidebar-item"><a href="{{ route('admin.login') }}">
+                    <div class="sidebar-item"><a href="{{ route('admin.showlogin') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path
@@ -102,7 +101,8 @@
                             </svg>
                             <span>{{ __('item-list') }}</span>
                         </a></div>
-                    <div class="sidebar-item"><a href="{{ route('admin.login') }}">
+                    <div class="sidebar-item"><a href="{{ route('admin.show
+                    login') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-tag-fill" viewBox="0 0 16 16">
                                 <path
@@ -120,7 +120,7 @@
                         </a></div>
                 </div>
 
-            @endguest
+            @endif
         </aside>
         <!-- sidebar end -->
 

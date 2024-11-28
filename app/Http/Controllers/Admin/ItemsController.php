@@ -9,10 +9,10 @@ use App\Models\Category;
 use App\Models\Size;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\RedirectResponse;
 
 class ItemsController extends Controller
 {
@@ -62,10 +62,11 @@ class ItemsController extends Controller
             'item_category_id'  => 'required|integer|exists:categories,id',
             'item_size_id'      => 'required|integer|exists:sizes,id',
             'item_gender_id'    => 'required|integer|exists:genders,id',
+            'item_name'         => 'required|string|max:20',
             'item_price'        => 'required|numeric|min:0',
             'item_name'         => 'required|string|max:20',
             'item_comment'      => 'nullable|string|max:1000',
-            'quantity'        => 'nullable|numeric|min:0',
+            'quantity'          => 'nullable|numeric|min:0',
             'images'            => 'array|max:4',
             'images.*'          => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -97,6 +98,16 @@ class ItemsController extends Controller
         }
 
         // 作成後、商品一覧ページへリダイレクト
+        return redirect()->route('admin.items.index');
+    }
+
+    public function destroy($id)
+    {
+        $item = Item::findOrFail($id);
+
+        // 商品を削除
+        $item->delete();
+
         return redirect()->route('admin.items.index');
     }
 }

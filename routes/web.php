@@ -44,9 +44,11 @@ Route::get('/thanks', [ItemsController::class, 'done'])->name('items.done');
 //ログイン機能
 Route::prefix('admin')->name('admin.')->group(function () {
     //管理者ログインフォームの表示
-    Route::get('login',  [LoginController::class, 'showLoginForm'])->name('login');
+    Route::get('login',     [LoginController::class, 'showLoginForm'])->name('showlogin');
     //管理者ログイン処理
-    Route::post('login', [LoginController::class, 'adminLogin'])->name('login');
+    Route::post('login',    [LoginController::class, 'adminLogin'])->name('login');
+    //管理者ログアウト処理
+    Route::post('logout',   [LoginController::class, 'logout'])->name('logout');
 });
 
 
@@ -59,6 +61,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
         Route::get('create',  [AdminItemsController::class, 'create'])->name('create');
         Route::post('create',  [AdminItemsController::class, 'store'])->name('store');
+        Route::delete('/items/{id}',               [AdminItemsController::class, 'destroy'])->name('destroy');
     });
 
 

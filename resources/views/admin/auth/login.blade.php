@@ -37,7 +37,7 @@
             <div class="admin-login-block">
                 <section class="login-form-sec">
                     <div class="admin-title">{{ __('admin-title') }}</div>
-                    <form class="admin-form-login" action="{{ route('admin.login') }}" method="post">
+                    <form class="admin-form-login" action="{{ route('admin.login') }}" method="POST">
                         @csrf
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -49,14 +49,19 @@
                             </div>
                         @endif
                         <div class="mb-3 admin-form">
-                            <label for="exampleInputEmail1" class="admin-form-label">{{ __('email') }}</label>
-                            <input type="email" class="form-control admin-form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="メールアドレスを入力してください">
+                            <label for="exampleInputEmail" class="admin-form-label">{{ __('email') }}</label>
+                            <input type="email" class="form-control admin-form-control" id="exampleInputEmail"
+                                aria-describedby="emailHelp" placeholder="メールアドレスを入力してください" name="email">
                         </div>
                         <div class="mb-3 admin-form">
-                            <label for="exampleInputPassword1" class="admin-form-label">{{ __('password') }}</label>
-                            <input type="password" class="form-control admin-form-control" id="exampleInputPassword1"
-                                placeholder="パスワードを入力してください">
+                            <label for="exampleInputPassword" class="admin-form-label">{{ __('password') }}</label>
+                            <input type="password" class="form-control admin-form-control" id="exampleInputPassword"
+                                placeholder="パスワードを入力してください" name="password">
+                        </div>
+                        <div class="mb-3 admin-form">
+                            <label for="remember">
+                                <input type="checkbox" name="remember" id="remember"> ログイン状態を保持
+                            </label>
                         </div>
                         <div class="admin-btn"><button type="submit"
                                 class="login-btn btn">{{ __('login') }}</button></div>

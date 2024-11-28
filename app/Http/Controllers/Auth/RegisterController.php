@@ -69,7 +69,6 @@ class RegisterController extends Controller
             'age'       => ['required', 'integer']
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
