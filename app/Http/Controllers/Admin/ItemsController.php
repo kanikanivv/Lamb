@@ -32,7 +32,7 @@ class ItemsController extends Controller
 
 
     /**
-     * 商品の新規作成画面を表示
+     * 新規作成画面を表示
      *
      * @return View
      */
@@ -49,9 +49,8 @@ class ItemsController extends Controller
         return view('admin.items.create', compact('categories', 'sizes', 'genders'));
     }
 
-
     /**
-     * 商品の新規作成画面で商品を保存
+     * 商品を新規登録
      *
      * @return RedirectResponse
      */
@@ -79,7 +78,6 @@ class ItemsController extends Controller
         $item->item_price       = $validated['item_price'];
         $item->item_comment     = $validated['item_comment'] ?? null;
         $item->quantity         = $validated['quantity'] ?? 20;  // デフォルト20
-        $item->quantity         = $validated['quantity'] ?? 20;  // デフォルト20
         $item->save();  // 商品を保存
 
         // 画像のアップロードと保存
@@ -97,6 +95,75 @@ class ItemsController extends Controller
         }
 
         // 作成後、商品一覧ページへリダイレクト
-        return redirect()->route('admin.items.index');
+        return redirect()->route('admin.items.index')->with('success', 'アイテムが登録されました');
+    }
+
+    /**
+     * 商品の編集画面を表示
+     *
+     * @return View
+     */
+    public function edit($id): View
+    {
+        $item       = Item::find($id);
+        $categories = Category::orderBy('id')->get();
+        $sizes      = Size::orderBy('id')->get();
+        $genders    = Gender::orderBy('id')->get();
+
+        return view('admin.items.edit', compact('item', 'categories', 'sizes', 'genders'));
+    }
+
+    /**
+     * 更新処理
+     */
+    public function update(Request $request, $id)
+    {
+        $item = Item::find($id);
+        if (!$item) {
+            return redirect()->route('admin.items.index')->with('error', 'アイテムが見つかりません');
+        }
+
+        // カンマを削除してからバリデーションを行う
+        $request->merge([
+            'item_price' => preg_replace('/,/', '', $request->item_price),  // 価格からカンマを削除
+        ]);
+
+        // バリデーション
+        $validated = $request->validate([
+            'item_category_id'  => 'required|integer|exists:categories,id',
+            'item_size_id'      => 'required|integer|exists:sizes,id',
+            'item_gender_id'    => 'required|integer|exists:genders,id',
+            'item_price'        => 'required|numeric|min:0',
+            'item_name'         => 'required|string|max:20',
+            'item_comment'      => 'nullable|string|max:1000',
+            'quantity'        => 'nullable|numeric|min:0',
+            'images'            => 'array|max:4',
+            'images.*'          => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // 商品の保存
+        $item->item_category_id = $validated['item_category_id'];
+        $item->item_size_id     = $validated['item_size_id'];
+        $item->item_gender_id   = $validated['item_gender_id'];
+        $item->item_name        = $validated['item_name'];
+        $item->item_price       = $validated['item_price'];
+        $item->item_comment     = $validated['item_comment'] ?? null;
+        $item->quantity         = $validated['quantity'] ?? 20;  // デフォルト20
+        $item->save();  // 商品を保存
+
+    // 画像の保存処理（画像がアップロードされた場合）
+    if ($request->hasFile('images')) {
+        // 以前の画像があれば削除
+        if ($item->image_path && file_exists(storage_path('app/public/' . $item->image_path))) {
+            unlink(storage_path('app/public/' . $item->image_path));
+        }
+
+        // 新しい画像を保存
+        $path = $request->file('images')[0]->store('public/images');
+        $item->image_path = basename($path);
+    }
+
+
+        return redirect()->route('admin.items.edit', $item->id)->with('success', 'アイテムが更新されました');
     }
 }
