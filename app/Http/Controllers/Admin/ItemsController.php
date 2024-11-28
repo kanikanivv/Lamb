@@ -98,4 +98,14 @@ class ItemsController extends Controller
         // 作成後、商品一覧ページへリダイレクト
         return redirect()->route('admin.items.index');
     }
+
+    public function destroy($id)
+    {
+        $item = Item::findOrFail($id);
+
+        // 商品を削除
+        $item->delete();
+
+        return redirect()->route('admin.items.index');
+    }
 }
