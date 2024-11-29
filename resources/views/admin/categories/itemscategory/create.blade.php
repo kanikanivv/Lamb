@@ -9,7 +9,6 @@
         <!-- breadcrumb -->
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="product.html" class="text-dark">管理一覧</a></li>
                 <li class="breadcrumb-item active" aria-current="page">カテゴリー一覧</li>
                 <li class="breadcrumb-item active" aria-current="page">アイテム一覧</li>
                 <li class="breadcrumb-item active" aria-current="page">アイテム編集</li>

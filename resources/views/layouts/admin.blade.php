@@ -35,7 +35,7 @@
     @if (Auth::guard('admin')->check() && !session()->has('remember'))
     <div class="header-wrpper ">
         <header class="d-flex justify-content-between py-4 px-4">
-            <span class="logo"><a href="/">{{ __('admin-title') }}</a></span>
+            <span class="logo"><a href="{{ route('admin.items.index') }}">{{ __('admin-title') }}</a></span>
             <ul>
                 <li class="nav-logout">
                     <a class="nav-link" href="{{ route('admin.logout') }}"

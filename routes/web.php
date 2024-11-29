@@ -14,7 +14,6 @@ use App\Http\Controllers\CartController;
 
 
 //カート処理
-
 Route::prefix('carts')->name('carts.')->group(function() {
     Route::get('/',  [CartController::class, 'index'])->name('index');
     Route::post('/', [CartController::class, 'store'])->name('store');
@@ -59,10 +58,19 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
+<<<<<<< HEAD
         Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
         Route::get('create',  [AdminItemsController::class, 'create'])->name('create');
         Route::post('create',  [AdminItemsController::class, 'store'])->name('store');
         Route::delete('/items/{id}',                   [AdminItemsController::class, 'destroy'])->name('destroy');
+=======
+        Route::get('index',      [AdminItemsController::class, 'index'])->name('index');
+        Route::get('create',     [AdminItemsController::class, 'create'])->name('create');
+        Route::post('create',    [AdminItemsController::class, 'store'])->name('store');
+        Route::get('edit/{id}',  [AdminItemsController::class, 'edit'])->name('edit');
+        Route::put('edit/{id}',  [AdminItemsController::class, 'update'])->name('update');
+        Route::delete('/items/{id}',               [AdminItemsController::class, 'destroy'])->name('destroy');
+>>>>>>> a13bcc5b22eee6756dfafded3d5e0f2c5ba4583a
     });
 
 
@@ -83,12 +91,12 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/itemscategory/{id}',                  [AdminItemsCategoryController::class, 'destroy'])->name('itemscategory.destroy');
         Route::delete('/itemscategory/{id}',               [AdminItemsCategoryController::class, 'destroy'])->name('itemscategory.destroy');
 
+        //サイズ一覧表示
+        Route::get('/sizes/index', [AdminSizesController::class, 'index'])->name('sizes.index');
 
-    //サイズ一覧表示
-    Route::get('/sizes/index', [AdminSizesController::class, 'index'])->name('sizes.index');
-
-
-    //性別一覧表示
-    Route::get('/genders/index', [AdminGendersController::class, 'index'])->name('genders.index');
+        //性別一覧表示
+        Route::get('/genders/index', [AdminGendersController::class, 'index'])->name('genders.index');
     });
+
+
 });

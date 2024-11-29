@@ -210,9 +210,6 @@ h1:before {
 .form-product-detail .table-product-detail option {
     font-size: 1.6rem;
 }
-.form-product-detail .table-product-detail img {
-    width: 100%;
-}
 .form-product-detail .update-btn {
     width: 400px;
     height: 48px;

@@ -27,15 +27,15 @@
                 <tbody>
                     <div class="category-item-class">
                         <tr>
-                            <td class="admin-category-td"><a href="{{ route('admin.categories.itemscategory.index') }}" class="nav-link">アイテム</a></td>
+                            <td class="admin-category-td text-left"><a href="{{ route('admin.categories.itemscategory.index') }}" class="nav-link">アイテム</a></td>
                             </td>
                         </tr>
                         <tr>
-                            <td class="admin-category-td"><a href="{{ route('admin.categories.sizes.index') }}" class="nav-link">サイズ</a></td>
+                            <td class="admin-category-td text-left"><a href="{{ route('admin.categories.sizes.index') }}" class="nav-link">サイズ</a></td>
                             </td>
                         </tr>
                         <tr>
-                            <td class="admin-category-td"><a href="{{ route('admin.categories.genders.index') }}" class="nav-link">性別</a></td>
+                            <td class="admin-category-td text-left"><a href="{{ route('admin.categories.genders.index') }}" class="nav-link">性別</a></td>
                             </td>
                         </tr>
                     </div>
