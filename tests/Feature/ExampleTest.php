@@ -1,25 +1,24 @@
 <?php
 
-it('returns a successful response', function () {
-    protected function setUp(): void
-    {
-        parent::setUp();
+namespace Tests\Feature;
 
-        dump('setUp');
-    }
+// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-    protected function tearDown(): void
-    {
-        dump('tearDown');
-
-        parent::tearDown();
-    }
-
-    public function test_sample1(): void
+class ExampleTest extends TestCase
+{
+    /**
+     * A basic test example.
+     */
+    public function test_the_application_returns_a_successful_response(): void
     {
         $response = $this->get('/');
 
-        dump('sample1');
+        $response->assertStatus(200);
+    }
+    public function test_sample1(): void
+    {
+        $response = $this->get('/');
 
         $response->assertStatus(200);
     }
@@ -28,8 +27,6 @@ it('returns a successful response', function () {
     {
         $response = $this->get('/');
 
-        dump('sample2');
-
         $response->assertStatus(200);
     }
-});
+}

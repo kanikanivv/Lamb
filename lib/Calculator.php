@@ -1,10 +1,8 @@
 <?php
-class CalculatorTest extends \PHPUnit\Framework\TestCase
+class Calculator
 {
-
-  public function testAdd()
+  public function add($num1, $num2)
   {
-    $cal = new Calculator();
-    $result = $cal->add(2, 2);
+    return $num1 + $num2;
   }
 }
