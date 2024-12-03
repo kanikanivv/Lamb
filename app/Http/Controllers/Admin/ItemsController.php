@@ -207,8 +207,6 @@ class ItemsController extends Controller
     public function destroy($id)
     {
         $item = Item::findOrFail($id);
-
-        // 商品を削除
         $item->delete();
 
         return redirect()->route('admin.items.index');

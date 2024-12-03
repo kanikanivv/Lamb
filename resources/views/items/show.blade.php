@@ -8,9 +8,8 @@
             <div class="product-detail-top row">
                 <div class="col">
                     <div class="product-images">
-                        @foreach($images as $image)<i class="fa fa-xingxxforeach" aria-hidden="true"></i>
-                        foreach
-                        @endforeach
+                        <img src="{{ asset('images/' . (Storage::exists('images/' . $item_image) ? $item_image : 'noimg.png')) }}"
+                            alt="{{ $item->item_name }}">
                     </div>
                 </div>
                 <div class="col">
@@ -20,31 +19,35 @@
                         <div class="product-name">{{ $item->item_name }}</div>
                         <input type="hidden" name="item_id" value="{{ $item->id }}" required>
                         <p class="product-price">{{ number_format($item->item_price) }}<span>円（税込）</span></p>
-                        <div class="row mb-4">
-                            <div class="col-md-4 mb-3">数量</div>
-                            <div class="col-md-8">
-                                <select class="form-select" value="count" aria-label="Default select example">
-                                    <option value="" disable {{ old('count') ? '' : 'selected' }}>選択してください</option>
-                                    @for ($i = 1; $i <= 20; $i++)
-                                        <option value="{{ $i }}" {{ old('count') == $i ? 'selected' : '' }}>
-                                            {{ $i }}個</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-4">サイズ</div>
                             <div class="col-md-8">
-                                <select class="form-select" value="size_name" aria-label="Default select example">
-                                    <option disable {{ old('size') ? '' : 'selected' }}>選択してください</option>
-                                    @foreach ($sizes as $size)
-                                        <option value="{{ $size->id }}" {{ old('size') == $i ? 'selected' : '' }}>
-                                            {{ $size->size_name }}</option>
-                                    @endforeach
-                                </select>
+                                <p>{{ $size_name }}</p>
+                                @if ($errors->has('size'))
+                                    <span class="invalid-feedback" role="alert">
+                                        {{ $errors->first('size') }}
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <input class="btn btn-primary submit" type="submit" value="カートに入れる" name="action" value="cart">
+                        <div class="row mb-4">
+                            <div class="col-md-4 mb-3">数量<span class="text-danger ms-3">*</span></div>
+                            <div class="col-md-8">
+                                <select class="form-select {{ $errors->has('quantity') ? 'is-invalid' : '' }}" name="quantity" aria-label="Default select example">
+                                    <option value="" disabled {{ old('quantity') ? '' : 'selected' }}>選択してください</option>
+                                    @for ($i = 1; $i <= 20; $i++)
+                                        <option value="{{ $i }}" {{ old('quantity') == $i ? 'selected' : '' }}>
+                                            {{ $i }}個</option>
+                                    @endfor
+                                </select>
+                                @if ($errors->has('quantity'))
+                                    <span class="invalid-feedback" role="alert">
+                                        {{ $errors->first('quantity') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <button class="btn btn-primary submit" type="submit" name="action" value="cart">カートに入れる</button>
                     </form>
                 </div>
             </div>

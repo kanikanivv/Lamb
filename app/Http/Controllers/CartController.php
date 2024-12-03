@@ -26,15 +26,23 @@ class CartController extends Controller
         ->whereHas('item')
         ->get();
 
-        // //合計金額の計算
-        // $total = $carts->reduce(function ($carry, $cart) {
-        //     $cart->subtotal = $cart->item->tax_sales_prices * $cart->count;
-        //     return $carry + $cart->subtotal;
-        // }, 0);
-        // $user = auth()->user();
-        // $total_count = $carts->sum('count'); //カート内の商品数の合計
+        //合計金額の計算
 
         return view('carts.index', compact('carts'));
+    }
+
+    /**
+     * カート内商品を削除
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function destroy($id)
+    {
+        $cart_item = Cart::findOrFail($id);
+        $cart_item->delete();
+
+        return redirect()->route('carts.index');
     }
 
 
@@ -49,36 +57,35 @@ class CartController extends Controller
     {
         // バリデーション
         $request->validate([
-            'user_id' => 'required|exists:user_id',
-            'item_id' => 'required|exists:items,id',
-            'count'   => 'required|integer|min:1',
+            'user_id'  => 'required|exists:users.id',
+            'item_id'  => 'required|exists:items,id',
+            'quantity' => 'required|integer|min:1',
         ]);
 
         $action = $request->input('action'); //「カートに追加する」ボタンを押す
 
         if ($action === 'cart') { //「カートに追加する」ボタンのvalue値
-            $user    = Auth::user();
-            bb($user);
-            $item_id = $request->input('item_id');
-            $count   = $request->input('count');
+            $user_id   = Auth::id();
+            $item_id   = $request->input('item_id');
+            $quantity  = $request->input('quantity');
 
             // すでにカートに同じ商品があるか確認
-            $existingCart = Cart::where('user_id', $user->id)
+            $existingCart = Cart::where('user_id', $user_id)
                 ->where('item_id', $item_id)
                 ->first();
 
             if ($existingCart) {
-                $existingCart->count += $count;
+                $existingCart->quantity += $quantity;
                 $existingCart->save();
-                return to_route('items.show');
+                return redirect()->route('items.show', ['id' => $item_id]);
             } else {
                 // カートに新しいアイテムを追加
                 Cart::create([
-                    'user_id' => $user->id,
-                    'item_id' => $item_id,
-                    'count'   => $count,
+                    'user_id'  => $user_id,
+                    'item_id'  => $item_id,
+                    'quantity' => $quantity,
                 ]);
-                return to_route('items.show');
+                return redirect()->route('items.show', ['id' => $item_id]);
             }
         }
     }

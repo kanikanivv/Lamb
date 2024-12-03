@@ -60,16 +60,17 @@ class ItemsController extends Controller
     /**
      * 商品詳細を表示
      *
-     * @param [type] $id
+     * @param [type] id
      * @return void
      */
     public function show($id)
     {
-        $sizes = Size::orderBy('id', 'desc')->get();
         $item          = Item::find($id);
+        $size_name         = $item->size->size_name;
         $category_name = Category::where('category_name', $id);
+        $item_image    = Item::with('images')->get();
 
-        return view('items.show', compact('item', 'sizes'));
+        return view('items.show', compact('item', 'size_name', 'item_image'));
     }
 
     /**

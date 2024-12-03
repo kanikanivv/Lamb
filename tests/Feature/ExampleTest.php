@@ -1,35 +1,26 @@
 <?php
 
-it('returns a successful response', function () {
+namespace Tests\Feature;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class ExampleTest extends TestCase
+{
+    use RefreshDatabase;  // テスト後にデータベースをリフレッシュする
+
+    // setUpメソッドはテストクラスの一部として定義します
     protected function setUp(): void
     {
         parent::setUp();
-
+        // ここにセットアップの処理を書く
         dump('setUp');
     }
 
-    protected function tearDown(): void
+    // 通常のテストメソッドを定義します
+    public function test_example()
     {
-        dump('tearDown');
-
-        parent::tearDown();
+        $response = $this->get('/');  // 例：トップページにGETリクエスト
+        $response->assertStatus(200);  // レスポンスが200であることを確認
     }
-
-    public function test_sample1(): void
-    {
-        $response = $this->get('/');
-
-        dump('sample1');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_sample2(): void
-    {
-        $response = $this->get('/');
-
-        dump('sample2');
-
-        $response->assertStatus(200);
-    }
-});
+}

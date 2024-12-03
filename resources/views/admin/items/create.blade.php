@@ -31,14 +31,14 @@
 
             <table class="table-product-detail">
                 <tr>
-                    <th>商品名</th>
+                    <th>商品名<span class="text-danger ms-3">*</span></th>
                     <td>
                         <input type="text"name="item_name" value="{{ old('item_name') ?? '' }}"
                             class="form-control form-control-lg">
                     </td>
                 </tr>
                 <tr>
-                    <th>単価</th>
+                    <th>単価<span class="text-danger ms-3">*</span></th>
                     <td>
                         <input type="text" name="item_price" value="{{ old('number_format(item_price)') ?? '' }}"
                             class="form-control form-control-lg">
@@ -52,7 +52,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>アイテム</th>
+                    <th>アイテム<span class="text-danger ms-3">*</span></th>
                     <td>
                         <select name="item_category_id" id="" class="form-select form-select-lg"
                             aria-label=".form-select-lg">
@@ -67,7 +67,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>サイズ</th>
+                    <th>サイズ<span class="text-danger ms-3">*</span></th>
                     <td>
                         <select name="item_size_id" id="" class="form-select form-select-lg"
                             aria-label=".form-select-lg">
@@ -82,7 +82,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>性別</th>
+                    <th>性別<span class="text-danger ms-3">*</span></th>
                     <td>
                         <select name="item_gender_id" id="" class="form-select form-select-lg"
                             aria-label=".form-select-lg">
@@ -97,7 +97,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>数量</th>
+                    <th>数量<span class="text-danger ms-3">*</span></th>
                     <td>
                         <select name="quantity" id="" class="form-select form-select-lg"
                             aria-label=".form-select-lg">

@@ -6,31 +6,36 @@
     <div class="container page-parent">
         <main class="page-main carts-containt">
             <h2 class="mt-0">カート</h2>
-            <form action="" method="POST" novalidate>
+            {{-- <form action="{{ route('order.') }}" method="POST" novalidate> --}}
                 @if ($carts->isNotEmpty())
                     <div class="carts-block d-flex justify-content-between">
                         <!-- カート内商品 -->
                         <div class="carts-wrap">
                             @foreach ($carts as $cart)
-                                <div class="carts mb-5">
-                                    <button class="btn btn-btn" type="submit">
-                                        <img src="{{ asset('images/Close.svg') }}" alt="">
-                                    </button>
-                                    <div class="card mb-3">
-                                        <div class="d-flex justify-content-between carts-item">
-                                            <div class="thumbnail">
-                                                <img src="{{ asset('images/noimg.png') }}" alt="">
-                                            </div>
-                                            <div class="detail">
-                                                <div class="card-body">
-                                                    <h5 class="card-title"></h5>
-                                                    <p class="card-text">単価 (税抜き) : {{ $cart->item->item_price }}</p>
-                                                    <p class="card-text">数量：{{ $cart->count }}</p>
+                                <form action="{{ route('carts.destroy', ['id' => $cart->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div class="carts mb-5">
+                                            <button class="btn btn-btn" type="submit" value="delete">
+                                                <img src="{{ asset('images/Close.svg') }}" alt="">
+                                            </button>
+                                        <div class="card mb-3">
+                                            <div class="d-flex justify-content-between carts-item">
+                                                <div class="thumbnail">
+                                                    <img src="{{ asset('images/noimg.png') }}" alt="">
+                                                </div>
+                                                <div class="detail">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">{{ $cart->item->item_name }}</h5>
+                                                        <p class="card-text">単価 (税抜き) : {{ number_format($cart->item->item_price) }}円</p>
+                                                        <p class="card-text">数量：{{ $cart->quantity }}個</p>
+                                                        <p class="card-text">サイズ：{{ $cart->item->size->size_name }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             @endforeach
                         </div>
                         <!-- 請求金額 -->
@@ -51,7 +56,7 @@
                 @else
                     <p>カートが商品がありません。</p>
                 @endif
-            </form>
+            {{-- </form> --}}
         </main>
     </div>
 

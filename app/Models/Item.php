@@ -15,7 +15,7 @@ class Item extends Model
         'item_name',
         'item_price',
         'item_comment',
-        'item_count',
+        'quantity',
         'created_at',
         'update_at'
     ];
@@ -28,6 +28,11 @@ class Item extends Model
     // カテゴリー
     public function Category() {
         return $this->belongsTo(Category::class, 'item_category_id');
+    }
+
+    // サイズ
+    public function size() {
+        return $this->belongsTo(Size::class, 'item_size_id');
     }
 
     // 画像

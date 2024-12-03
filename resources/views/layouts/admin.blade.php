@@ -101,8 +101,7 @@
                             </svg>
                             <span>{{ __('item-list') }}</span>
                         </a></div>
-                    <div class="sidebar-item"><a href="{{ route('admin.show
-                    login') }}">
+                    <div class="sidebar-item"><a href="{{ route('admin.showlogin') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-tag-fill" viewBox="0 0 16 16">
                                 <path
