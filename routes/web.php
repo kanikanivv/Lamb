@@ -46,7 +46,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //管理者ログインフォームの表示
     Route::get('login',     [LoginController::class, 'showLoginForm'])->name('showlogin');
     //管理者ログイン処理
-    Route::post('login',    [LoginController::class, 'adminLogin'])->name('login');
+    Route::post('/login',    [LoginController::class, 'adminLogin'])->name('login');
     //管理者ログアウト処理
     Route::post('logout',   [LoginController::class, 'logout'])->name('logout');
 });
@@ -58,19 +58,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
-<<<<<<< HEAD
-        Route::get('index',   [AdminItemsController::class, 'index'])->name('index');
-        Route::get('create',  [AdminItemsController::class, 'create'])->name('create');
-        Route::post('create',  [AdminItemsController::class, 'store'])->name('store');
-        Route::delete('/items/{id}',                   [AdminItemsController::class, 'destroy'])->name('destroy');
-=======
-        Route::get('index',      [AdminItemsController::class, 'index'])->name('index');
-        Route::get('create',     [AdminItemsController::class, 'create'])->name('create');
-        Route::post('create',    [AdminItemsController::class, 'store'])->name('store');
-        Route::get('edit/{id}',  [AdminItemsController::class, 'edit'])->name('edit');
-        Route::put('edit/{id}',  [AdminItemsController::class, 'update'])->name('update');
+
+        Route::get('index',                        [AdminItemsController::class, 'index'])->name('index');
+        Route::get('create',                       [AdminItemsController::class, 'create'])->name('create');
+        Route::post('create',                      [AdminItemsController::class, 'store'])->name('store');
+        Route::get('edit/{id}',                    [AdminItemsController::class, 'edit'])->name('edit');
+        Route::put('edit/{id}',                    [AdminItemsController::class, 'update'])->name('update');
         Route::delete('/items/{id}',               [AdminItemsController::class, 'destroy'])->name('destroy');
->>>>>>> a13bcc5b22eee6756dfafded3d5e0f2c5ba4583a
+
     });
 
 

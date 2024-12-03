@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
+    protected $guard = 'admin'; // この行を追加
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -22,6 +23,7 @@ class Admin extends Authenticatable
         'admin_name',
         'email',
         'password',
+        'remember_token'
     ];
 
     /**
