@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image_name', 150);
-            $table->integer('image_color')->nullable();
+            $table->string('name', 150);
+            $table->integer('color')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });

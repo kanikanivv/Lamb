@@ -22,7 +22,6 @@ return new class extends Migration
             $table->integer('item_count')->default(20);
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
-
             //外部キー制約
             $table->foreign('item_category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('item_size_id')->references('id')->on('sizes')->onDelete('cascade');

@@ -51,12 +51,12 @@
                         <div class="mb-3 admin-form">
                             <label for="exampleInputEmail" class="admin-form-label">{{ __('email') }}</label>
                             <input type="email" class="form-control admin-form-control" id="exampleInputEmail"
-                                aria-describedby="emailHelp" placeholder="メールアドレスを入力してください" name="email">
+                                aria-describedby="emailHelp" placeholder="メールアドレスを入力してください" name="email" value="{{ old('email') }}">
                         </div>
                         <div class="mb-3 admin-form">
                             <label for="exampleInputPassword" class="admin-form-label">{{ __('password') }}</label>
                             <input type="password" class="form-control admin-form-control" id="exampleInputPassword"
-                                placeholder="パスワードを入力してください" name="password">
+                                placeholder="パスワードを入力してください" name="password" value="{{ old('password') }}">
                         </div>
                         <div class="mb-3 admin-form">
                             <label for="remember">

@@ -20,8 +20,6 @@ return new class extends Migration
          $table->string('tel', 20)->nullable()->unique();
          $table->integer('age');
          $table->string('password', 70)->change();
-         $table->timestamp('created_at')->change();
-         $table->timestamp('updated_at')->nullable;
         });
     }
 

@@ -35,6 +35,12 @@ class LoginController extends Controller
         $this->validate($request, [
             'email'    => 'required|email',
             'password' => 'required|min:5'
+        ],
+        [
+            'email.required' => 'メールアドレスは必須です。',
+            'email.email'    => '有効なメールアドレスを入力してください。',
+            'password.required' => 'パスワードは必須です。',
+            'password.min' => 'パスワードは5文字以上で入力してください。',
         ]);
 
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
@@ -67,4 +73,6 @@ class LoginController extends Controller
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
+
+
 }

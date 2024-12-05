@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('image_id');
             $table->unsignedBigInteger('item_id');
             $table->timestamps();
-
             //外部キー制約
             $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
@@ -31,5 +30,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('image_item');
     }
-    
+
 };
