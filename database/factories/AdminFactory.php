@@ -12,6 +12,7 @@ use Faker\Generator as Faker;
  */
 class AdminFactory extends Factory
 {
+    
     /**
     * モデルと対応するファクトリの名前
     *

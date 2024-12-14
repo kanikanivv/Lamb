@@ -16,9 +16,18 @@ use App\Http\Controllers\CartController;
 //カート処理
 Route::prefix('carts')->name('carts.')->group(function() {
     Route::get('/',  [CartController::class, 'index'])->name('index');
-    Route::post('/', [CartController::class, 'store'])->name('store');
+    // Route::post('/', [CartController::class, 'store'])->name('store');
+    Route::delete('/{id}', [CartController::class, 'destroy'])->name('destroy');
 });
+Route::post('/carts', [CartController::class, 'store'])->name('carts.store');
 
+
+
+// 商品一覧
+Route::prefix('items')->name('items.')->group(function() {
+    Route::get('/',       [ItemsController::class, 'index'])->name('index');
+    Route::get('/{id}',   [ItemsController::class, 'show'])->name('show');
+});
 
 //新規登録画面から新規登録処理
 Auth::routes();
@@ -26,11 +35,6 @@ Route::get('/register',  [RegisterController::class, 'showRegistrationForm'])->n
 Route::post('/register', [RegisterController::class, 'register']);
 
 
-// 商品一覧
-Route::prefix('items')->name('items.')->group(function() {
-    Route::get('/',     [ItemsController::class, 'index'])->name('index');
-    Route::get('/{id}', [ItemsController::class, 'show'])->name('show');
-});
 
 
 // お届け先確認画面
@@ -77,7 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         //アイテム編集画面表示
         Route::get('/itemscategory/create',                [AdminItemsCategoryController::class, 'create'])->name('itemscategory.create');
         //アイテム新規追加処理
-        Route::post('/itemscategory',                      [AdminItemsCategoryController::class, 'store'])->name('itemscategory.store');
+        Route::post('/itemscategory/create',                      [AdminItemsCategoryController::class, 'store'])->name('itemscategory.store');
         //アイテム新規登録画面表示
         Route::get('/itemscategory/{itemcategory}/edit',   [AdminItemsCategoryController::class, 'edit'])->name('itemscategory.edit');
         //アイテム更新処理

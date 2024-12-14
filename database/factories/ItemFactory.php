@@ -2,7 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Item
@@ -14,8 +17,8 @@ class ItemFactory extends Factory
      *
      * @var string
      */
-    protected $model = items::class;
-    
+    protected $model = Item::class;
+
     /**
      * Define the model's default state.
      *
@@ -24,15 +27,13 @@ class ItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'item_category_id' => rand(1, 10),
-            'item_size_id' => rand(1, 10),
-            'item_gender_id' => rand(1, 10),
+            'item_category_id' => $this->faker->numberBetween(1, 10),
+            'item_size_id' => $this->faker->numberBetween(1, 10),
+            'item_gender_id' => $this->faker->numberBetween(1, 10),
             'item_name' => $this->faker->name(),
-            'item_price'  => rand(1, 10),
-            'item_comment' =>rand(1000, 10000),
-            'item_count' =>$this->faker->text(100),
-            'created_at' => now(),
-            'update_at' => now(),
+            'item_price'  => $this->faker->randomFloat,
+            'item_comment' => $this->faker->sentence,
+            'quantity' => $this->faker->numberBetween(1, 20),
         ];
     }
 

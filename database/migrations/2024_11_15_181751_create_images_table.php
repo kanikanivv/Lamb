@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name', 150);
             $table->integer('color')->nullable();
+            $table->string('path', 250)->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });

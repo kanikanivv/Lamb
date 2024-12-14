@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('item_name', 60);
             $table->integer('item_price');
             $table->text('item_comment', 1000)->nullable();
-            $table->integer('item_count')->default(20);
+            $table->integer('quantity')->default(20);
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
             //外部キー制約

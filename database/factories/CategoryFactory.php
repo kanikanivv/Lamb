@@ -2,21 +2,21 @@
 
 namespace Database\Factories;
 
-use App\Models\Gender;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Gender>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class GenderFactory extends Factory
+class CategoryFactory extends Factory
 {
+
     /**
      * モデルと対応するファクトリの名前
      *
      * @var string
      */
-    protected $model = Gender::class;
-
+    protected $model = Category::class;
 
     /**
      * Define the model's default state.
@@ -26,7 +26,7 @@ class GenderFactory extends Factory
     public function definition(): array
     {
         return [
-            'gender_name' => $this->faker->name()
+            'category_name' => $this->faker->name()
         ];
     }
 }

@@ -68,8 +68,9 @@ class ItemsController extends Controller
         $sizes = Size::orderBy('id', 'desc')->get();
         $item          = Item::find($id);
         $category_name = Category::where('category_name', $id);
+        $item_image    = Item::with('images')->get();
 
-        return view('items.show', compact('item', 'sizes'));
+        return view('items.show', compact('item', 'sizes', 'item_image'));
     }
 
     /**

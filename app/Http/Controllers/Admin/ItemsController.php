@@ -44,7 +44,7 @@ class ItemsController extends Controller
 
         // エラーハンドリング
         if ($categories->isEmpty() || $sizes->isEmpty() || $genders->isEmpty()) {
-            return direct()->route('admin.items.index')->with('erroe', '必要なデータが見つかりませんでした');
+            return direct()->route('admin.items.index')->with('error', '必要なデータが見つかりませんでした');
         }
         return view('admin.items.create', compact('categories', 'sizes', 'genders'));
     }

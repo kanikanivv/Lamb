@@ -6,11 +6,15 @@
     <div class="container page-parent product-detail">
         <main class="page-main">
             <div class="product-detail-top row">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="col">
                     <div class="product-images">
-                        @foreach($images as $image)<i class="fa fa-xingxxforeach" aria-hidden="true"></i>
-                        foreach
-                        @endforeach
+                        <img src="{{ asset('images/' . (Storage::exists('images/' . $item_image) ? $item_image : 'noimg.png')) }}"
+                            alt="{{ $item->item_name }}">
                     </div>
                 </div>
                 <div class="col">
@@ -19,12 +23,13 @@
                         <p class="category">{{ $item->category->category_name }}</p>
                         <div class="product-name">{{ $item->item_name }}</div>
                         <input type="hidden" name="item_id" value="{{ $item->id }}" required>
+                        {{-- {{ dd($item->id) }} --}}
                         <p class="product-price">{{ number_format($item->item_price) }}<span>円（税込）</span></p>
                         <div class="row mb-4">
                             <div class="col-md-4 mb-3">数量</div>
                             <div class="col-md-8">
-                                <select class="form-select" value="count" aria-label="Default select example">
-                                    <option value="" disable {{ old('count') ? '' : 'selected' }}>選択してください</option>
+                                <select class="form-select" name="count" aria-label="Default select example">
+                                    <option value="" disabled {{ old('count') ? '' : 'selected' }}>選択してください</option>
                                     @for ($i = 1; $i <= 20; $i++)
                                         <option value="{{ $i }}" {{ old('count') == $i ? 'selected' : '' }}>
                                             {{ $i }}個</option>
@@ -44,7 +49,8 @@
                                 </select>
                             </div>
                         </div>
-                        <input class="btn btn-primary submit" type="submit" value="カートに入れる" name="action" value="cart">
+                        <input class="btn btn-primary submit" type="submit" name="action" value="cart">
+                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                     </form>
                 </div>
             </div>

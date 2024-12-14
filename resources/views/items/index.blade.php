@@ -31,8 +31,8 @@
                 <!-- card -->
                 @forelse ($items as $item)
                     <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
-                        <a href="{{ route('items.show', ['id'=>$item->id]) }}">
-                            <img src="{{ asset('images/' . (Storage::exists('images/' . $item_image) ? $item_image : 'noimg.png')) }}" alt="{{ $item->item_name }}">
+                        <a href="{{ route('items.show', ['id' => $item->id]) }}">
+                            <img src="{{ asset('images/' . (Storage::exists('images/' . $item->image) ? $item->image : 'noimg.png')) }}" alt="{{ $item->item_name }}">
                         </a>
                         <div class="card-body"><a>
                             <h5 class="card-title">{{ $item->item_name }}</h5>

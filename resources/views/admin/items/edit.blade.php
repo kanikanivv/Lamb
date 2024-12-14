@@ -48,6 +48,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>商品説明</th>
+                    <td>
+                        <input type="text" name="item_comment" value="{{ old('item_comment', $item->item_comment) }}" class="form-control form-control-lg">
+                    </td>
+                </tr>
+                <tr>
                     <th>イメージ画像</th>
                     <td>
                         <!-- 複数の画像選択 -->
