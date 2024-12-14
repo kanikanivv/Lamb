@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'item_category_id',
         'item_size_id',
         'item_gender_id',
         'item_name',
-        'price',
+        'item_price',
         'item_comment',
-        'item_count',
+        'quantity',
         'created_at',
         'update_at'
     ];
@@ -30,9 +31,13 @@ class Item extends Model
         return $this->belongsTo(Category::class, 'item_category_id');
     }
 
-    // 画像
-    public function Image() {
-        return $this->belongsTo(Image::class, 'item_image_id');
+    // サイズ
+    public function Size() {
+        return $this->belongsTo(Size::class, 'item_size_id');
     }
 
+    // 画像
+    public function images() {
+        return $this->belongsToMany(Image::class, 'image_item');
+    }
 }

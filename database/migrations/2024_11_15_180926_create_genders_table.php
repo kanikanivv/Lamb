@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('gender_name', 60)->unique();
             $table->timestamp('created_at');
-            $table->timestamp('update_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
