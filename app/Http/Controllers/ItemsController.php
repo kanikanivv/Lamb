@@ -53,7 +53,6 @@ class ItemsController extends Controller
         $items = $query->paginate(20);
 
         $item_image = Item::with('images')->get();
-
         return view('items.index', compact('items', 'gender_name', 'category_name', 'item_image'));
     }
 
@@ -65,7 +64,7 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        $sizes = Size::orderBy('id', 'desc')->get();
+        $sizes         = Size::orderBy('id', 'desc')->get();
         $item          = Item::find($id);
         $category_name = Category::where('category_name', $id);
         $item_image    = Item::with('images')->get();

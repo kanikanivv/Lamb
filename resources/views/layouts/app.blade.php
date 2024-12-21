@@ -105,7 +105,7 @@
                 </ul>
             </div>
         </div>
-        <p class="copyright"><small>Copyright &copy; 2024 Lamb. All Rights Reserved.</small></p>
+        <p class="copyright"><small>Copyright &copy; 2025 Lamb. All Rights Reserved.</small></p>
     </footer>
 </body>
 

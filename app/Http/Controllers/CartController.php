@@ -53,6 +53,7 @@ class CartController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // dd($request->all());
         if(!Auth::check()) {
             return redirect()->route('login')->with('error', 'ログインが必要です');
         }
@@ -62,6 +63,7 @@ class CartController extends Controller
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'item_id' => 'required|exists:items,id',
+            'size'    => 'required|exists:sizes,id',
             'count'   => 'required|integer|min:1',
         ]);
 
@@ -74,12 +76,14 @@ class CartController extends Controller
         if ($action === 'cart') { //「カートに追加する」ボタンのvalue値
             $user    = Auth::user();
             $item_id = $request->input('item_id');
+            $size_id = $request->input('size');
             $count   = $request->input('count');
-            // dd($count);
+            // dd($size_id);
 
             // すでにカートに同じ商品があるか確認
             $existingCart = Cart::where('user_id', $user->id)
                 ->where('item_id', $item_id)
+                ->where('size_id', $size_id)
                 ->first();
 
             if ($existingCart) {
@@ -91,6 +95,7 @@ class CartController extends Controller
                 Cart::create([
                     'user_id' => $user->id,
                     'item_id' => $item_id,
+                    'size_id' => $size_id,
                     'count'   => $count,
                 ]);
                 return to_route('items.show', ['id' => $item_id])->with('success', 'アイテムがカートに追加されました');

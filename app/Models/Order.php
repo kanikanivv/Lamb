@@ -8,21 +8,18 @@ class Order extends Model
 {
     protected $fillabe = [
         'user_id',
-        'billing_amount',
-        'created_at',
-        'update_at'
+        'item_id',
+        'size_id',
+        'count',
     ];
 
-    public function OrderDetail() {
-
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
     }
 
-    public function User() {
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
-
-    public function Recommendation() {
-
-    }
-
 }

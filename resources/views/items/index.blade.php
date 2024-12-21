@@ -32,7 +32,8 @@
                 @forelse ($items as $item)
                     <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
                         <a href="{{ route('items.show', ['id' => $item->id]) }}">
-                            <img src="{{ asset('images/' . (Storage::exists('images/' . $item->image) ? $item->image : 'noimg.png')) }}" alt="{{ $item->item_name }}">
+                            {{-- <img src="{{ asset('storage/images/' . (Storage::exists('public/images/' . $item->image) ? $item->image : 'noimg.png')) }}" alt="{{ $item->item_name }}">--}}
+                            <img src="{{ \Storage::url($item->image) }}" >
                         </a>
                         <div class="card-body"><a>
                             <h5 class="card-title">{{ $item->item_name }}</h5>

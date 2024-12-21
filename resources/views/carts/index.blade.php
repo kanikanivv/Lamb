@@ -21,13 +21,14 @@
                                 <div class="card mb-3">
                                     <div class="d-flex justify-content-between carts-item">
                                         <div class="thumbnail">
-                                            <img src="{{ asset('images/noimg.png') }}" alt="">
+                                            {{-- <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $item->item_name }}" class="mt-2" width="100"> --}}
                                         </div>
                                         <div class="detail">
                                             <div class="card-body">
-                                                <h5 class="card-title"></h5>
+                                                <h5 class="card-title">{{ $cart->item->item_name }}</h5>
                                                 <p class="card-text">単価 (税抜き) : {{ $cart->item->item_price }}</p>
                                                 <p class="card-text">数量：{{ $cart->count }}</p>
+                                                <p class="card-text">サイズ：{{ $cart->size ? $cart->size->size_name : 'サイズ未設定' }}</p>
                                             </div>
                                         </div>
                                         <form action="{{ route('carts.destroy', $cart->id) }}" method="POST">
@@ -49,14 +50,15 @@
                         <div class="card text-center">
                             <div class="card-body">
                                 <p class="card-text item-price"><span>商品の小計
-                                        :</span><span>{{ $total }}</span></p>
+                                        :</span><span>{{ $total }} 円</span></p>
                                 <p class="card-text service-price"><span>配送料・サービス料：</span><span>200円</span></p>
                                 <p class="card-text charge-amount">
-                                    <span>ご請求額：</span><span>{{ $total + 200 }}</span>
+                                    <span>ご請求額：</span><span>{{ $total + 200 }} 円</span>
                                 </p>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit" value="送信">購入手続きに進む</button>
+                            {{-- {{dd(route('orders.index'))}} --}}
+                            <a href="{{route('orders.index')}}" class="btn btn-primary" type="buttun" value="送信">購入手続きに進む</a>
                     </div>
                 </div>
             @else

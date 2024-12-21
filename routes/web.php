@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\ItemsCategoryController as AdminItemsCategoryCont
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+
 
 
 
@@ -34,12 +37,11 @@ Auth::routes();
 Route::get('/register',  [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
-
-
-
 // お届け先確認画面
-Route::get('/address', [OrderController::class, 'index'])->name('order.index');
-
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+//クレカ決済
+Route::post('/orders/createCharge', [OrderController::class, 'createCharge'])->name('orders.createCharge');
+Route::post('/orders/payment', [OrderController::class, 'payment'])->name('orders.payment');
 
 // 購入完了
 Route::get('/thanks', [ItemsController::class, 'done'])->name('items.done');

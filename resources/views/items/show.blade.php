@@ -13,8 +13,7 @@
                 @endif
                 <div class="col">
                     <div class="product-images">
-                        <img src="{{ asset('images/' . (Storage::exists('images/' . $item_image) ? $item_image : 'noimg.png')) }}"
-                            alt="{{ $item->item_name }}">
+                        <img src="{{ asset('storage/images/' . (Storage::exists('public/images/' . $item->image) ? $item->image : 'noimg.png')) }}" alt="{{ $item->item_name }}">
                     </div>
                 </div>
                 <div class="col">
@@ -23,7 +22,6 @@
                         <p class="category">{{ $item->category->category_name }}</p>
                         <div class="product-name">{{ $item->item_name }}</div>
                         <input type="hidden" name="item_id" value="{{ $item->id }}" required>
-                        {{-- {{ dd($item->id) }} --}}
                         <p class="product-price">{{ number_format($item->item_price) }}<span>円（税込）</span></p>
                         <div class="row mb-4">
                             <div class="col-md-4 mb-3">数量</div>
@@ -31,19 +29,19 @@
                                 <select class="form-select" name="count" aria-label="Default select example">
                                     <option value="" disabled {{ old('count') ? '' : 'selected' }}>選択してください</option>
                                     @for ($i = 1; $i <= 20; $i++)
-                                        <option value="{{ $i }}" {{ old('count') == $i ? 'selected' : '' }}>
-                                            {{ $i }}個</option>
-                                    @endfor
-                                </select>
+                                    <option value="{{ $i }}" {{ old('count') == $i ? 'selected' : '' }}>
+                                        {{ $i }}個</option>
+                                        @endfor
+                                    </select>
+                                </div>
                             </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-4">サイズ</div>
                             <div class="col-md-8">
-                                <select class="form-select" value="size_name" aria-label="Default select example">
-                                    <option disable {{ old('size') ? '' : 'selected' }}>選択してください</option>
+                                <select class="form-select" name="size" aria-label="Default select example">
+                                    <option value="" disable {{ old('size') ? '' : 'selected' }}>選択してください</option>
                                     @foreach ($sizes as $size)
-                                        <option value="{{ $size->id }}" {{ old('size') == $i ? 'selected' : '' }}>
+                                        <option value="{{ $size->id }}" {{ old('size') == $size->id ? 'selected' : '' }}>
                                             {{ $size->size_name }}</option>
                                     @endforeach
                                 </select>
