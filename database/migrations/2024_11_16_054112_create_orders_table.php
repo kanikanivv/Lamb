@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('item_id');
-            $table->integer('count');
+            $table->integer('billing_amount');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
 
             //外部キー制約
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
         });
 
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('orders');
     }
 };

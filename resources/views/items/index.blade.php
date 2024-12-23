@@ -9,10 +9,10 @@
                 <span class="fs-3 sidebar-title">性別</span>
                 <hr>
                 <ul class="nav nav-pills flex-column">
-                    <li><a href="{{ route('items.index', ['gender_name' => 'すべて' ]) }}" class="nav-link">すべて</a></li>
-                    <li><a href="{{ route('items.index', ['gender_name' => 'メンズ' ]) }}" class="nav-link">メンズ</a></li>
-                    <li><a href="{{ route('items.index', ['gender_name' => 'レディース' ]) }}" class="nav-link">レディース</a></li>
-                    <li><a href="{{ route('items.index', ['gender_name' => 'キッズ' ]) }}" class="nav-link">キッズ</a></li>
+                    <li><a href="{{ route('items.index', ['gender_name' => 'すべて']) }}" class="nav-link">すべて</a></li>
+                    <li><a href="{{ route('items.index', ['gender_name' => 'メンズ']) }}" class="nav-link">メンズ</a></li>
+                    <li><a href="{{ route('items.index', ['gender_name' => 'レディース']) }}" class="nav-link">レディース</a></li>
+                    <li><a href="{{ route('items.index', ['gender_name' => 'キッズ']) }}" class="nav-link">キッズ</a></li>
                 </ul>
                 <span class="fs-3 sidebar-title">カテゴリー</span>
                 <hr>
@@ -32,13 +32,11 @@
                 @forelse ($items as $item)
                     <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
                         <a href="{{ route('items.show', ['id' => $item->id]) }}">
-                            {{-- <img src="{{ asset('storage/images/' . (Storage::exists('public/images/' . $item->image) ? $item->image : 'noimg.png')) }}" alt="{{ $item->item_name }}">--}}
-                            <img src="{{ \Storage::url($item->image) }}" >
-                        </a>
-                        <div class="card-body"><a>
-                            <h5 class="card-title">{{ $item->item_name }}</h5>
-                            <p class="card-text">{{ $item->item_comment }}</p>
-                        </a></div>
+                            <img src="{{ asset('storage/images/' . (Storage::exists('public/images/' . $item->images->first()->image) ? $item->images->first()->image : 'noimg.png')) }}" alt="{{ $item->item_name }}">
+                            <div class="card-body"><a>
+                                    <h5 class="card-title">{{ $item->item_name }}</h5>
+                                    <p class="card-text">{{ $item->item_comment }}</p>
+                                </a></div>
                     </div>
                 @empty
                     <p>該当する商品はありません。</p>

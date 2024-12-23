@@ -6,20 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillabe = [
+    protected $fillable = [
         'user_id',
-        'item_id',
-        'size_id',
-        'count',
+        'billing_amount',
+        'created_at',
+        'update_at'
     ];
 
-    public function item()
-    {
-        return $this->belongsTo(Item::class, 'item_id');
+    public function OrderDetail() {
+
     }
 
-    public function user()
-    {
+    public function User() {
         return $this->belongsTo(User::class);
     }
+
+    public function Recommendation() {
+
+    }
+
 }

@@ -9,6 +9,11 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if (session('error'))
+            <div class="alert alert-error">
+                {{ session('error') }}
+            </div>
+        @endif
         <main class="page-main carts-containt">
             <h2 class="mt-0">お届け先</h2>
             <div class="carts-layout d-flex justify-content-between">

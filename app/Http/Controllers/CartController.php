@@ -35,8 +35,6 @@ class CartController extends Controller
                 $subtotal = $cart->item->item_price * $cart->count;
             return $carry + $subtotal;
         }, 0);
-
-
         $user = auth()->user();
         $total_count = $carts->sum('count'); //カート内の商品数の合計
 

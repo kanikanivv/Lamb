@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Cart;
 use Payjp\Payjp;
 use Payjp\Charge;
@@ -24,17 +25,20 @@ class OrderController extends Controller
         $user_id = Auth::id();
 
         // itemがnullでないカートアイテムのみ取得
-        $order = Order::with('item', 'user')
+        $carts = Cart::with('item', 'user')
         ->where('user_id', $user_id)
         ->whereHas('item')
         ->get();
+
         //合計金額の計算
-        $total = $order->reduce(function ($carry, $order) {
-                $subtotal = $order->item->item_price * $order->count;
+        $total = $carts->reduce(function ($carry, $cart) {
+            //dd($cart->item->item_price);
+            //dd($cart->count);
+                $subtotal = $cart->item->item_price * $cart->count;
             return $carry + $subtotal;
         }, 0);
         $user = auth()->user();
-        $total_count = $order->sum('count'); //カート内の商品数の合計
+        $total_count = $carts->sum('count'); //カート内の商品数の合計
 
         $cardList = [];
 
@@ -59,18 +63,39 @@ class OrderController extends Controller
             ];
         }
         }
-        return view('orders.index', compact('order', 'total', 'total_count', 'user', 'cardList'));
+        return view('orders.index', compact('carts', 'total', 'total_count', 'user', 'cardList'));
     }
 
 
     public function createCharge(Request $request)
     {
 
+        // ログインユーザ取得
+        $user = auth()->user();
+        $user_id = Auth::id();
+
+        // itemがnullでないカートアイテムのみ取得
+        $carts = Cart::with('item', 'user')
+        ->where('user_id', $user_id)
+        ->whereHas('item')
+        ->get();
+
+                    // 各カートアイテムごとにOrderDetailを作成
+                    foreach ($carts as $cart) {
+                        $item = $cart->item;  // カートに関連するアイテム
+                        $itemCount = $cart->count;
+
+        //合計金額の計算
+        $total = $carts->reduce(function ($carry, $cart) {
+            $subtotal = $cart->item->item_price * $cart->count;
+            return $carry + $subtotal;
+        }, 0);
+
+        DB::beginTransaction();
+
         if (empty($request->get('payjp-token'))) {
             return redirect()->back()->with('error', 'カード情報が不足しています');
         }
-
-        DB::beginTransaction();
 
         try {
             // ログインユーザー取得
@@ -96,10 +121,32 @@ class OrderController extends Controller
                // 上記で登録した顧客のidを指定
             "customer" => $customer->id,
                // 金額
-            "amount" => 100,
+            "amount" => $total,
                // 通貨
             "currency" => 'jpy',
             ]);
+
+                // デバッグ用ログ
+                Log::info('支払い処理完了');
+
+                // 注文の作成
+                $order = Order::create([
+                    'user_id'        => $user->id,
+                    'billing_amount' => $total,
+                ]);
+
+                // デバッグ用ログ
+                Log::info('注文作成完了: ', $order->toArray());
+
+                $orderdetail = OrderDetail::create([
+                    'user_id'        => $user->id,
+                    'item_id'        => $item->id,
+                    'item_count'     => $itemCount,
+                    'price'          => $item->item_price
+                ]);
+
+                // デバッグ用ログ
+                Log::info('注文作成完了: ', $orderdetail->toArray());
 
             // カート内の商品を削除
             Cart::where('user_id', $user->id)->delete();
@@ -111,27 +158,34 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             Log::error('決済エラー: ' . $e->getMessage());
             DB::rollback();
-
-            if (strpos($e, 'has already been used') !== false) {
-                return redirect()->back()->with('error-message', '既に登録されているカード情報です');
-            }
-            return redirect()->back()->with('error', '支払いに失敗しました');
+            return redirect()->back()->with('error', '支払いに失敗しました。エラー詳細: ' . $e->getMessage());
+            // return redirect()->back()->with('error', '支払いに失敗しました');
         }
+    }
     }
 
     public function payment(Request $request)
     {
         // ログインユーザ取得
         $user = auth()->user();
+        $user_id = Auth::id();
 
-        $order = Order::with('item')
-            ->where('user_id', $user->id)
+        // itemがnullでないカートアイテムのみ取得
+        $carts = Cart::with('item', 'user')
+            ->where('user_id', $user_id)
+            ->whereHas('item')
             ->get();
 
-        $total = $order->reduce(function ($carry, $order) {
-            return $carry + $order->item->item_price * $order->count;
-        }, 0);
+            // 各カートアイテムごとにOrderDetailを作成
+        foreach ($carts as $cart) {
+            $item = $cart->item;  // カートに関連するアイテム
+            $itemCount = $cart->count;
 
+        //合計金額の計算
+        $total = $carts->reduce(function ($carry, $cart) {
+            $subtotal = $cart->item->item_price * $cart->count;
+            return $carry + $subtotal;
+        }, 0);
         DB::beginTransaction();
 
         try {
@@ -148,17 +202,39 @@ class OrderController extends Controller
                     $customer->save();
                 } else {
                     //選択してない場合
-                    return redirect()->back();
+                    return redirect()->back()->with('error', 'カードを選択してください');
                 }
             }
             // 支払処理
             \Payjp\Charge::create([
                 'customer' => $customer->id,
-                'amount' => $total,  // 金額
+                'amount'   => $total,  // 金額
                 'currency' => 'jpy',
             ]);
 
-            // カート内の商品を削除
+                // デバッグ用ログ
+            Log::info('支払い処理完了');
+
+            // 注文の作成
+            $order = Order::create([
+                'user_id'        => $user->id,
+                'billing_amount' => $total,
+            ]);
+
+            // デバッグ用ログ
+            Log::info('注文作成完了: ', $order->toArray());
+
+            $orderdetail = OrderDetail::create([
+                'user_id'        => $user->id,
+                'item_id'        => $item->id,
+                'item_count'     => $itemCount,
+                'price'          => $item->item_price
+            ]);
+
+            // デバッグ用ログ
+            Log::info('注文作成完了: ', $orderdetail->toArray());
+
+            //カート内の商品を削除
             Cart::where('user_id', $user->id)->delete();
 
             DB::commit();
@@ -168,11 +244,9 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             Log::error('決済エラー: ' . $e->getMessage());
             DB::rollback();
-
-            if (strpos($e, 'has already been used') !== false) {
-                return redirect()->back()->with('error-message', '既に登録されているカード情報です');
-            }
-            return redirect()->back()->with('error', '支払いに失敗しました');
+            return redirect()->back()->with('error', '支払いに失敗しました。エラー詳細: ' . $e->getMessage());
+            // return redirect()->back()->with('error', '支払いに失敗しました');
         }
     }
+}
 }
