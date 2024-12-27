@@ -32,7 +32,9 @@
                 @forelse ($items as $item)
                     <div class="card g-col-3 g-col-md-12" style="width: 23rem;">
                         <a href="{{ route('items.show', ['id' => $item->id]) }}">
-                            <img src="{{ asset('storage/images/' . (Storage::exists('public/images/' . $item->images->first()->image) ? $item->images->first()->image : 'noimg.png')) }}" alt="{{ $item->item_name }}">
+                            @foreach ($item->images as $image)
+                                <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $item->item_name }}">
+                            @endforeach
                             <div class="card-body"><a>
                                     <h5 class="card-title">{{ $item->item_name }}</h5>
                                     <p class="card-text">{{ $item->item_comment }}</p>

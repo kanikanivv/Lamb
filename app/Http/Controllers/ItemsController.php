@@ -7,6 +7,7 @@ use App\Models\Gender;
 use App\Models\Category;
 use App\Models\Size;
 use App\Models\Image;
+// use App\\Models\OrderDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -51,8 +52,10 @@ class ItemsController extends Controller
 
         // 商品の取得
         $items = $query->paginate(20);
-        $item_image = Item::with('images')->get();
-        return view('items.index', compact('items', 'gender_name', 'category_name', 'item_image'));
+
+        $images     = $items->load('images');
+        // $item_image = Item::with('images')->get();
+        return view('items.index', compact('items', 'gender_name', 'category_name', 'images'));
     }
 
     /**
@@ -78,6 +81,8 @@ class ItemsController extends Controller
      */
     public function done()
     {
-        return view('items.thanks');
+
+        $order_detail = OrderDetail::get();
+        return view('items.thanks', compact('order_detail'));
     }
 }

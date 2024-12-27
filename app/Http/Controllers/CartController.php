@@ -38,6 +38,8 @@ class CartController extends Controller
         $user = auth()->user();
         $total_count = $carts->sum('count'); //カート内の商品数の合計
 
+        $items = Item::get();
+        $images      = $items->load('images');
         return view('carts.index', compact('carts', 'total', 'total_count'));
     }
 

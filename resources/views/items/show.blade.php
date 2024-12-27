@@ -13,7 +13,9 @@
                 @endif
                 <div class="col">
                     <div class="product-images">
-                        <img src="{{ asset('storage/images/' . (Storage::exists('public/images/' . $item->image) ? $item->image : 'noimg.png')) }}" alt="{{ $item->item_name }}">
+                        @foreach ($item->images as $image)
+                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $item->item_name }}">
+                    @endforeach
                     </div>
                 </div>
                 <div class="col">

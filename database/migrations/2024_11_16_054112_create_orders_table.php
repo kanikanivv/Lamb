@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->integer('billing_amount');
+            $table->integer('purchase_id');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
 

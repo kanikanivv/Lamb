@@ -21,14 +21,18 @@
                                 <div class="card mb-3">
                                     <div class="d-flex justify-content-between carts-item">
                                         <div class="thumbnail">
-                                            {{-- <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $item->item_name }}" class="mt-2" width="100"> --}}
+                                            {{-- @foreach ($item->images as $image)
+                                                <img src="{{ asset('storage/' . $image->path) }}"
+                                                    alt="{{ $item->item_name }}">
+                                            @endforeach --}}
                                         </div>
                                         <div class="detail">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $cart->item->item_name }}</h5>
                                                 <p class="card-text">単価 (税抜き) : {{ $cart->item->item_price }}</p>
                                                 <p class="card-text">数量：{{ $cart->count }}</p>
-                                                <p class="card-text">サイズ：{{ $cart->size ? $cart->size->size_name : 'サイズ未設定' }}</p>
+                                                <p class="card-text">
+                                                    サイズ：{{ $cart->size ? $cart->size->size_name : 'サイズ未設定' }}</p>
                                             </div>
                                         </div>
                                         <form action="{{ route('carts.destroy', $cart->id) }}" method="POST">
@@ -57,8 +61,9 @@
                                 </p>
                             </div>
                         </div>
-                            {{-- {{dd(route('orders.index'))}} --}}
-                            <a href="{{route('orders.index')}}" class="btn btn-primary" type="buttun" value="送信">購入手続きに進む</a>
+                        {{-- {{dd(route('orders.index'))}} --}}
+                        <a href="{{ route('orders.index') }}" class="btn btn-primary" type="buttun"
+                            value="送信">購入手続きに進む</a>
                     </div>
                 </div>
             @else
