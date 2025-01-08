@@ -7,7 +7,7 @@ use App\Models\Gender;
 use App\Models\Category;
 use App\Models\Size;
 use App\Models\Image;
-// use App\\Models\OrderDetail;
+use App\Models\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -81,8 +81,11 @@ class ItemsController extends Controller
      */
     public function done()
     {
+        $orders = Order::orderBy('created_at', 'desc')->first();
 
-        $order_detail = OrderDetail::get();
-        return view('items.thanks', compact('order_detail'));
+        if (!$orders) {
+            return view('items.thanks', ['message' => '購入履歴が見つかりません。']);
+        }
+        return view('items.thanks', compact('orders'));
     }
 }

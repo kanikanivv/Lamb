@@ -40,7 +40,7 @@ class CartController extends Controller
 
         $items = Item::get();
         $images      = $items->load('images');
-        return view('carts.index', compact('carts', 'total', 'total_count'));
+        return view('carts.index', compact('carts', 'total', 'total_count', 'items', 'images'));
     }
 
 

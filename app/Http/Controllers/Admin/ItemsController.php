@@ -42,10 +42,10 @@ class ItemsController extends Controller
         $sizes      = Size::orderBy('id')->get();
         $genders    = Gender::orderBy('id')->get();
 
-        // エラーハンドリング
-        if ($categories->isEmpty() || $sizes->isEmpty() || $genders->isEmpty()) {
-            return direct()->route('admin.items.index')->with('error', '必要なデータが見つかりませんでした');
-        }
+        // // エラーハンドリング
+        // if ($categories->isEmpty() || $sizes->isEmpty() || $genders->isEmpty()) {
+        //     return direct()->route('admin.items.index')->with('error', '必要なデータが見つかりませんでした');
+        // }
         return view('admin.items.create', compact('categories', 'sizes', 'genders'));
     }
 

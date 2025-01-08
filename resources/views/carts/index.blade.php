@@ -21,9 +21,17 @@
                                 <div class="card mb-3">
                                     <div class="d-flex justify-content-between carts-item">
                                         <div class="thumbnail">
-                                            {{-- @foreach ($item->images as $image)
-                                                <img src="{{ asset('storage/' . $image->path) }}"
-                                                    alt="{{ $item->item_name }}">
+                                            @foreach ($items as $item)
+                                                @foreach ($item->images as $image)
+                                                    <img src="{{ asset('storage/' . $image->path) }}"
+                                                        alt="{{ $item->item_name }}">
+                                                @endforeach
+                                            @endforeach
+                                            {{-- @foreach ($items as $item)
+                                                @foreach ($item->images as $image)
+                                                    <img src="{{ asset('storage/' . $image->path) }}"
+                                                        alt="{{ $item->item_name }}">
+                                                @endforeach
                                             @endforeach --}}
                                         </div>
                                         <div class="detail">

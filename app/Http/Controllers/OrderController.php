@@ -133,6 +133,8 @@ class OrderController extends Controller
                 $order = Order::create([
                     'user_id'        => $user->id,
                     'billing_amount' => $total,
+                    'purchase_id'    => random_int(100000000000, 999999999999)
+
                 ]);
 
                 // デバッグ用ログ

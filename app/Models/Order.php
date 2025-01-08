@@ -11,7 +11,7 @@ class Order extends Model
         'billing_amount',
         'purchase_id',
         'created_at',
-        'update_at'
+        'updated_at'
     ];
 
     public function OrderDetail() {

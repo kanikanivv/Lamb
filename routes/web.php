@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\ItemsController as AdminItemsController;
 use App\Http\Controllers\Admin\CategoriesController as AdminCategoriesController;
 use App\Http\Controllers\Admin\SizesController as AdminSizesController;
@@ -15,6 +16,8 @@ use App\Http\Controllers\PaymentController;
 
 
 
+Route::get('user/', [UserController::class, 'index'])->name('user.index');
+Route::put('/user', [UserController::class, 'update'])->name('user.update');
 
 //カート処理
 Route::prefix('carts')->name('carts.')->group(function() {
@@ -39,6 +42,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // お届け先確認画面
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
 //クレカ決済
 Route::post('/orders/createCharge', [OrderController::class, 'createCharge'])->name('orders.createCharge');
 Route::post('/orders/payment', [OrderController::class, 'payment'])->name('orders.payment');
@@ -60,7 +64,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // 管理画面
 Route::prefix('admin')->name('admin.')->group(function() {
-
 
     // items:商品管理
     Route::prefix('items')->name('items.')->group(function() {
