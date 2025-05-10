@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Gender extends Model
 {
+    use HasFactory;
     protected $table = 'genders';
-    protected $fillabe = [
+    protected $fillable = [
         'gender_name',
         'created_at',
-        'update_at'
+        'updated_at'
     ];
 
     public function Items() {

@@ -38,6 +38,7 @@
                 </section>
                 <section>
                     <h2 class="mt-0"><strong>{{ __('会員登録がまだの方はこちら') }}</strong></h2>
+
                     <div class="text-center"><a href="{{ route('register') }}"><input class="registration-btn btn" value="新規会員登録（無料）"></a></div>
                 </section>
             </div>

@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Gender;
 use App\Models\Category;
+use App\Models\Size;
+use App\Models\Image;
+use App\Models\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\DB;
 
 class ItemsController extends Controller
 {
     /**
-     * 商品一覧を表示
+     * カテゴリー別商品一覧を表示
      *
      * @param Request $request
      * @param [type] $gender_name
@@ -23,7 +26,7 @@ class ItemsController extends Controller
     {
 
         // 性別パラメータを取得
-        $gender_name = $gender_name ?? $request->get('gender_name', 'すべて');
+        $gender_name   = $gender_name ?? $request->get('gender_name', 'すべて');
 
         // カテゴリーパラメータを取得
         $category_name = $category_name ?? $request->get('category_name', 'すべて');
@@ -50,7 +53,9 @@ class ItemsController extends Controller
         // 商品の取得
         $items = $query->paginate(20);
 
-        return view('items.index', compact('items', 'gender_name', 'category_name'));
+        $images     = $items->load('images');
+        // $item_image = Item::with('images')->get();
+        return view('items.index', compact('items', 'gender_name', 'category_name', 'images'));
     }
 
     /**
@@ -61,13 +66,26 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        $item = Item::find($id);
+        $sizes         = Size::orderBy('id', 'desc')->get();
+        $item          = Item::find($id);
         $category_name = Category::where('category_name', $id);
-        return view('items.show', compact('item'));
+        $item_image    = Item::with('images')->get();
+
+        return view('items.show', compact('item', 'sizes', 'item_image'));
     }
 
-    public function thanks()
+    /**
+     * 購入完了画面を表示
+     *
+     * @return void
+     */
+    public function done()
     {
-        return view('items.thanks');
+        $orders = Order::orderBy('created_at', 'desc')->first();
+
+        if (!$orders) {
+            return view('items.thanks', ['message' => '購入履歴が見つかりません。']);
+        }
+        return view('items.thanks', compact('orders'));
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->text('review', 255);
             $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable;
+            $table->timestamp('updated_at')->nullable();
             
             //外部キー制約
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');

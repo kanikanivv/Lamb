@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('admin_name', 60);
             $table->string('email', 250)->unique();
             $table->string('password', 250);
+            $table->string('remember_token')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });
+
     }
 
     /**

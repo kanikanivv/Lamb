@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/items';
 
     /**
      * Show the application dashboard.
@@ -46,7 +46,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('guest');
     }
@@ -69,7 +69,6 @@ class RegisterController extends Controller
             'age'       => ['required', 'integer']
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -87,6 +86,8 @@ class RegisterController extends Controller
             'address'   => $data['address'],
             'age'       => $data['age']
         ]);
+
+        return view('items.index');
     }
 
 /**
